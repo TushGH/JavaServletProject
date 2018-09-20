@@ -1,13 +1,16 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import data.UserDAO;
+import model.user;
 
 /**
  * Servlet implementation class rentalcontrol
@@ -36,15 +39,30 @@ public class rentalcontrol extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");//setting the content type  
-		PrintWriter pw=response.getWriter();//get the stream to write the data  
-		String UTAID = request.getParameter("usrname") ;
-		//writing html in the stream  
-		pw.println("<html><body>");  
-		pw.println("Welcome  " + UTAID);  
-		pw.println("</body></html>");  
-		  
-		pw.close();//closing the stream  
+		String sub=request.getParameter("submit");
+		System.out.println(sub);
+		if(sub.equalsIgnoreCase("login"))
+		{
+			System.out.println("LOGIN");
+		}
+		else if(sub.equalsIgnoreCase("Register"))
+		{   System.out.println("In Register");
+			user newuser = new user();
+			newuser.setFullName(request.getParameter("name"));
+			
+			newuser.setPassword(request.getParameter("password"));
+		    
+			newuser.setUsername(request.getParameter("user_name"));
+			
+			UserDAO InsertUser = new UserDAO();
+			int status = InsertUser.insertuser(newuser);
+			System.out.println(status);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		else {
+			
+			
+		}
 	}
 
 }

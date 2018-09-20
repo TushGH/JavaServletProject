@@ -8,7 +8,7 @@
 </head>
 
 <body style="width:450px;">
-<H2 align = "centre">WELCOME TO CAMPUS RENTAL CAR</H2>
+<h2 align="center">WELCOME TO CAMPUS RENTAL CAR </H2>
 <table>
 
 <tr>
@@ -28,7 +28,7 @@
 	<td></td>
 	<td><a href="ForgetPswd.jsp">Forget Password</a></td>
 </tr><tr>
-<tr><td><input type="submit" id="login" name="login" value="Login"/></td></tr>
+<tr><td><input type="submit" name="submit" value="login" ></td></tr>
 </table>
 </form>
 
