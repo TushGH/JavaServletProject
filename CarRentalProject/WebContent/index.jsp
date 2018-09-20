@@ -17,11 +17,11 @@
 <table>
 <tr>
 <td>UserName</td> <td></td>
-<td><input type="text" id="usrname" name="usrname" /></td>
+<td><input type="text" id="username" name="user_name" /></td>
 </tr>
 <tr>
 <td>Password</td> <td></td>
-<td><input type="password" id="pswd" name="pswd"></td>
+<td><input type="password" id="password" name="password"></td>
 </tr>
 <tr>
 	<td><a href="Registration.jsp">New User</a></td>

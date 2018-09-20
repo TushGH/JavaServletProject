@@ -42,20 +42,32 @@ public class rentalcontrol extends HttpServlet {
 		String sub=request.getParameter("submit");
 		System.out.println(sub);
 		if(sub.equalsIgnoreCase("login"))
-		{
-			System.out.println("LOGIN");
+		{   
+			String username = request.getParameter("user_name");
+			String password = request.getParameter("password");
+			System.out.println(username + "    " + password);
+		    int status = 0 ;
+			UserDAO AuthUser = new UserDAO();
+			status = AuthUser.authentecateUser(username, password);
+			if (status == 0){
+				System.out.println("The Authentication fail");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+			}
+			else{
+				System.out.println("The Authentication Pass");
+				request.getRequestDispatcher("UserHomePage.jsp").forward(request, response);
+			}
+			
+		
 		}
 		else if(sub.equalsIgnoreCase("Register"))
 		{   System.out.println("In Register");
 			user newuser = new user();
 			newuser.setFullName(request.getParameter("name"));
-			
 			newuser.setPassword(request.getParameter("password"));
-		    
-			newuser.setUsername(request.getParameter("user_name"));
-			
+		    newuser.setUsername(request.getParameter("user_name"));
 			UserDAO InsertUser = new UserDAO();
-			int status = InsertUser.insertuser(newuser);
+			int status =InsertUser.insertuser(newuser);
 			System.out.println(status);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
