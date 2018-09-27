@@ -13,6 +13,10 @@
 3.<a href="#"> Revoke Renter </a> <br>
 
 4.<a href="#"> Update Profile </a> <br><br><br>
+<form name="Loginout" action="index.jsp" method="post" style="width: 300px; ">
+<input type="submit" name="logout" value="logout" ></button>
+</form>
+<br><br>
 **For any additional functionalities link will appear here
 
 

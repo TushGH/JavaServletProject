@@ -41,6 +41,7 @@ public class rentalcontrol extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sub=request.getParameter("submit");
 		System.out.println(sub);
+		//System.out.println(sub);
 		if(sub.equalsIgnoreCase("login"))
 		{   String Role;
 			String username = request.getParameter("user_name");
@@ -92,10 +93,15 @@ public class rentalcontrol extends HttpServlet {
 			System.out.println(status);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
+		else if(sub.equalsIgnoreCase("logout")) {
+			System.out.println("vjhvhjv");
+		}
 		else {
 			
-			
 		}
+			
+			
+		
 	}
 
 }
