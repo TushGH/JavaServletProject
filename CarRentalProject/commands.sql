@@ -2,8 +2,6 @@ CREATE TABLE user (username varchar(100), role varchar(100), name varchar(100) ,
 
 CREATE TABLE cars (CarName varchar(100), capacity int, Weekday double, Weekend double, Week double,GPS double, OnStar double, SiriusXm double);
 
-CREATE TABLE extras (CarName varchar(100), GPS double, OnStar double, SiriusXm double);
-
 CREATE TABLE reservedcars (Confirmationid int, CarName varchar(100), Username varchar(100), Starttime time, Startdate date, Endtime time, EndDate Date);
 
 
