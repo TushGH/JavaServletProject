@@ -4,7 +4,7 @@ CREATE TABLE cars (CarName varchar(100), capacity int, Weekday double, Weekend d
 
 CREATE TABLE extras (CarName varchar(100), GPS double, OnStar double, SiriusXm double);
 
-CREATE TABLE reserved cars (Reservationid int, CarName varchar(100), Username varchar(100), Starttime time, Startdate date, Endtime time, EndDate Date);
+CREATE TABLE reserved cars (Confirmationid int, CarName varchar(100), Username varchar(100), Starttime time, Startdate date, Endtime time, EndDate Date);
 
 Data into the car table:
 
