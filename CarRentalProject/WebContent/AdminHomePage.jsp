@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,10 +14,6 @@
 3.<a href="#"> Revoke Renter </a> <br>
 
 4.<a href="#"> Update Profile </a> <br><br><br>
-<form name="Loginout" action="index.jsp" method="post" style="width: 300px; ">
-<input type="submit" name="logout" value="logout" ></button>
-</form>
-<br><br>
 **For any additional functionalities link will appear here
 
 

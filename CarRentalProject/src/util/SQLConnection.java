@@ -1,8 +1,8 @@
 package util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+
+
 
 public class SQLConnection {
 	static Connection con = null;
@@ -10,10 +10,10 @@ public class SQLConnection {
 	{
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con=DriverManager.getConnection(  
-			"jdbc:mysql://localhost:3306/sakila","root","Prasi_1995");  
-			
+//			Class.forName("com.mysql.jdbc.Driver");  
+//			 con=DriverManager.getConnection(  
+//			"jdbc:mysql://localhost:3306/test","root","");  
+//			Connection a = con ;
              System.out.println("Database connection successful");		
 		}
 		

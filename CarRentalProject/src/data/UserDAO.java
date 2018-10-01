@@ -18,8 +18,8 @@ public class UserDAO {
 		String query = "select password,Role from user where username = ?";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");  
-			   Connection con=DriverManager.getConnection(  
-			      "jdbc:mysql://localhost:3306/sakila","root","Prasi_1995");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://localhost:3306/test","root","");
 	    	  ps=con.prepareStatement(query);
 	    	  ps.setString(1, Username);
 	    	  
@@ -51,8 +51,8 @@ public class UserDAO {
 		
 		try
 		{   Class.forName("com.mysql.jdbc.Driver");  
-		   Connection con=DriverManager.getConnection(  
-		      "jdbc:mysql://localhost:3306/sakila","root","Prasi_1995");  
+		Connection con=DriverManager.getConnection(  
+		"jdbc:mysql://localhost:3306/test","root","");
 		
 			
 			 ps=con.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?,?)");
@@ -67,15 +67,16 @@ public class UserDAO {
 			 System.out.println(newuser.getPhoneNo());
 			 System.out.println(newuser.getAutoClub());
 		     ps.setString(1,newuser.getUsername());
-		     ps.setString(2, newuser.getPassword());
-		     ps.setString(3,newuser.getFullName() );
-		     ps.setString(4, newuser.getRole());
-		     ps.setString(5, newuser.getLicence());
+		     ps.setString(2, newuser.getRole());
+		     ps.setString(3,newuser.getFullName());
+		     ps.setString(4, newuser.getEmail());
+		     ps.setString(5,newuser.getPhoneNo() );
 		     ps.setString(6, newuser.getAddress());
 		     ps.setString(7, newuser.getUTAID());
-		     ps.setString(8, newuser.getEmail());
-		     ps.setString(9,newuser.getPhoneNo() );
+		     ps.setString(8, newuser.getPassword());
+		     ps.setString(9, "NO");
 		     ps.setString(10, newuser.getAutoClub());
+
 		     status=ps.executeUpdate();
 		     con.close();
 		}

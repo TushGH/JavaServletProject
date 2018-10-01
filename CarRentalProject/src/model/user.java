@@ -94,8 +94,8 @@ public class user {
 		return PhoneNo;
 	}
 
-	public void setPhoneNo(String phoneNo) {
-		PhoneNo = phoneNo;
+	public void setPhoneNo(String string) {
+		PhoneNo = string;
 	}
 
 	public String getAddress() {
