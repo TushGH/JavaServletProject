@@ -12,6 +12,61 @@ public class UserDAO {
 	static Connection con;
 	static PreparedStatement ps;
 	public String role;
+	public int editrole(String username , String role){
+		int status = 0 ;
+		try{  
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://localhost:3306/test","root","");  
+			
+			
+			
+			
+		      String query = "update user set role = ? where username = ?";
+		      PreparedStatement preparedStmt = con.prepareStatement(query);
+		      preparedStmt.setString   (1, role);
+		      preparedStmt.setString   (2, username);
+		     
+
+		      
+		      status = preparedStmt.executeUpdate();
+			
+			 
+			con.close();  
+			}
+		catch(Exception e){ System.out.println(e);
+			} 
+		
+		
+		return status ;
+	}
+	public int revoke(String username){
+		int status = 0 ;
+		try{  
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection(  
+			"jdbc:mysql://localhost:3306/test","root","");  
+			
+			
+			
+			
+		      String query = "update user set BlackListed = ? where username = ?";
+		      PreparedStatement preparedStmt = con.prepareStatement(query);
+		      preparedStmt.setString   (1, "YES");
+		      preparedStmt.setString   (2, username);
+		     
+
+		      
+		      status = preparedStmt.executeUpdate();
+			
+			 
+			con.close();  
+			}
+		catch(Exception e){ System.out.println(e);
+			} 
+		return status ;
+		
+	}
 	public int authentecateUser(String Username , String Password){
 		int status = 0 ;
 		System.out.println(Username);

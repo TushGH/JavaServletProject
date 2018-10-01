@@ -10,8 +10,8 @@
 <h2 align="center">WELCOME TO ADMIN HOMEPAGE</h2>
 <br><br>
 1.<a href="#"> Edit User Profile </a> <br>
-2.<a href="#"> Change User Roles</a> <br>
-3.<a href="#"> Revoke Renter </a> <br>
+2.<a href="EditUserRole.jsp"> Change User Roles</a> <br>
+3.<a href="RevokeRenter.jsp"> Revoke Renter </a> <br>
 
 4.<a href="#"> Update Profile </a> <br><br><br>
 **For any additional functionalities link will appear here
