@@ -72,7 +72,7 @@ public class UserDAO {
 		public List<ViewMyReservation> ViewReservationDAO(String startdate,String enddate){
 			ViewMyReservation viewMy=null;
 			List<ViewMyReservation> Result=new ArrayList<>();
-		String query="select * from reservedcars where startdate>=('?' AS DATE) and startdate<=('?' as DATE)";
+		String query="select * from reservedcars where startdate>=('?' AS DATE) and enddate<=('?' as DATE)";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");  
 			Connection con=DriverManager.getConnection(  
