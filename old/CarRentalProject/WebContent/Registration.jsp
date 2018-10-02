@@ -4,14 +4,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registration</title>
+<title>REGISTRATION</title>
+<link rel="stylesheet" type="text/css" href="test.css" media="screen" />
 </head>
-<body>
-<h2>Car Rental System</h2>
 
-IN REGISTRATION PAGE
-<form action="${pageContext.request.contextPath}/rentalcontrol" method="post">
-<table style="width: 50%">
+<body background-image="car3.png">
+<h2>REGISTRATION</h2>
+<img src="car4.png" alt="car img" height="100" width="100">
+<br><br><br>
+<form action="" method="post">
+<table>
 	<tr>
 		<td>User Name</td>
 		<td><input type="text" name="user_name"/></td>
@@ -60,15 +62,16 @@ IN REGISTRATION PAGE
 		<td>UTA ID</td>
 		<td><input type="text" name="uta_id"/></td>
 	</tr>	
-
+<tr><td></td></tr>
 <tr >
 		<td>Auto club Member</td>
-		<td><input type="radio" name="auto_club" value="yes"/>Yes</td>
-		<td><input type="radio" name="auto_club" value="no"/>No</td>
+		<td><input type="radio" name="auto_club" value="yes"/>Yes
+		<input type="radio" name="auto_club" value="no"/>No</td>
 	</tr>	
 </table>
 <br>
 <br>
 <input type="submit"  name = "submit" value = "Register" /></form>
+
 </body>
 </html>

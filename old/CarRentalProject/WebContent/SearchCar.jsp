@@ -2,18 +2,27 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head color:>
 <meta charset="ISO-8859-1">
 <title>Search Car</title>
+<style type="text/css">
+body{background-image: url("car3.png"), url("paper.gif");
+  background-repeat:no-repeat;background-position:bottom;
+    background-color:#c9c3c3;width:100%;}
+    h2{font-weight:bold;font-weight:900;}
+    table{width:50%;font-weight:900;font-weigth:bold;}
+   table tr td{font-weigth:bold;font-weight:900;}
+   tr:hover {background-color:#4CAF50;}
+    a{font-weight:bold;text-align:right;vertical-align:top;margin-left:1400px;'}
+</style>
 </head>
 
-<body background="car1.jpg; background-repeat: no-repeat;
-    background-color: black;">
+<body background-image="car3.png">
 <h2>Search Car</h2>
-<img src="car1.jpg" alt="carimg" height="50" width="50">
+<img src="car4.png" alt="car img" height="100" width="100">
 
 <form action=" " method="post">
-<table style="width: 50%">
+<table>
 	<tr><td>Select start time:</td><td> <input type="time" name="starttime" id="starttime"></td></tr>
 	<tr><td>Select start date: </td><td><input type="date" name="startdate" id="startdate"></td></tr>
 	<tr><td>Select end time: </td><td><input type="time" name="startdate" id="endtime"></td></tr>

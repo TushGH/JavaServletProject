@@ -2,12 +2,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Greeting Form</title>
+<title>Manager Home Page</title>
+<link rel="stylesheet" type="text/css" href="test.css" media="screen" />
 </head>
 
 <body style="width:450px;">
 <H2 align="center">WELCOME TO RENTAL MANAGER HOMEPAGE</H2>
-<br><br>
+<a href="index.jsp" class="logoutstyle">Logout</a>
+<img src="car4.png" alt="car img" height="100" width="100">
+
+<br><br><br>
+
 1.<a href="#"> View All Cars Rented </a> <br>
 2.<a href="#"> View Details of Specific Rental </a> <br>
 3.<a href="#"> View Available Car </a> <br>

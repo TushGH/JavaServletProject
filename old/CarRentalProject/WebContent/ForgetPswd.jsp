@@ -4,15 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Greeting Form</title>
+<title>FORGET PASSWORD</title>
+<link rel="stylesheet" type="text/css" href="test.css" media="screen" />
 </head>
-
-<body style="width:450px;">
-<H2 align = "centre">RESET PASSWORD</H2>
-<table>
-
-<tr>
-<td>
+<body>
+<h2>RESET PASSWORD</h2>
+<img src="car4.png" alt="car img" height="100" width="100">
+<a href="index.jsp" class="logoutstyle">Logout</a>
+<br><br><br>
 <form name="Loginform" action="NameController" method="post" style="width: 300px; ">
 <table>
 <tr>

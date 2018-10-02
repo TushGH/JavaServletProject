@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Greeting Form</title>
+<title>WELCOME TO CAMPUS RENTAL CAR</title>
+<link rel="stylesheet" type="text/css" href="test.css" media="screen" />
 </head>
+<body>
+<h2>WELCOME TO CAMPUS RENTAL CAR</h2>
+<img src="car4.png" alt="car img" height="100" width="100">
+<a href="index.jsp" class="logoutstyle">Logout</a>
+<br><br><br>
 
-<body style="width:450px;">
-<h2 align="center">WELCOME TO CAMPUS RENTAL CAR </H2>
-<table>
-
-<tr>
-<td>
 <form name="Loginform" action="${pageContext.request.contextPath}/rentalcontrol" method="post" style="width: 300px; ">
 <table>
 <tr>

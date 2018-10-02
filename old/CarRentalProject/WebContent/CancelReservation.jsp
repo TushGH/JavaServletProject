@@ -4,10 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Cancel My Reservation</title>
+<title>CANCEL MY RESRVATION</title>
+<link rel="stylesheet" type="text/css" href="test.css" media="screen" />
 </head>
 <body>
-<h2>Cancel My Reservation</h2>
+<h2>CANCEL MY RESERVATION</h2>
+<img src="car4.png" alt="car img" height="100" width="100">
+<a href="index.jsp" class="logoutstyle">Logout</a>
+<br><br><br>
 
 <form action=" " method="post">
 <table style="width: 50%">

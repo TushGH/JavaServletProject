@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
-<title>Insert title here</title>
+<title>VIEW DETAILS OF SPECIFIC RESERVATION</title>
+<link rel="stylesheet" type="text/css" href="test.css" media="screen" />
 </head>
 <body>
-<h2>View Details Of Specific Reservation</h2>
-
+<h2>VIEW DETAILS OF SPECIFIC RESERVATION</h2>
+<img src="car4.png" alt="car img" height="100" width="100">
+<a href="index.jsp" class="logoutstyle">Logout</a>
+<br><br><br>
 <form action=" " method="post">
 <table style="width: 50%">
 	

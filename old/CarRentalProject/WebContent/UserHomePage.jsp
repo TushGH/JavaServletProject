@@ -2,12 +2,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Greeting Form</title>
+<title>USER HOME PAGE</title>
+<link rel="stylesheet" type="text/css" href="test.css" media="screen" />
 </head>
-
-<body style="width:450px;">
-<h2 align="center">WELCOME TO USER HOMEPAGE</h2>
-
+<body>
+<h2>USER HOME PAGE</h2>
+<img src="car4.png" alt="car img" height="100" width="100">
+<a href="index.jsp" class="logoutstyle">Logout</a>
+<br><br><br>
 1.<a href="#"> Search car </a> <br>
 2.<a href="#"> View My Reservation </a> <br>
 3.<a href="#"> Cancel My Reservation </a> <br>
