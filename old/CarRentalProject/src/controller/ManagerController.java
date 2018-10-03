@@ -66,6 +66,30 @@ public class ManagerController extends HttpServlet {
 			add.AddCar(CarName,Capacity,WeekDay,WeekEnd,Week,Gps,OnStar,SiriusXM);
 		
 		}
+		else if(sub.equalsIgnoreCase("DeleteRental")) {
+		String reservationid = request.getParameter("confirmationid");
+		System.out.println(reservationid+ " ");
+		ManagerDAO result=new ManagerDAO();
+		result.delete(reservationid);
+		}
+		
+		else if(sub.equalsIgnoreCase("UpdateProfile")) {
+				HttpSession session = request.getSession();
+				String username=request.getParameter("username");
+				session.setAttribute("username",username);
+				String name=request.getParameter("name");
+				String email=request.getParameter("email");
+				String phone=request.getParameter("phone");
+				String addr=request.getParameter("addr");
+				String curpassword=request.getParameter("curpassword");
+				String newpassword=request.getParameter("newpassword");
+				String conpassword=request.getParameter("conpassword");
+				System.out.println(session.getAttribute("username"));
+				ManagerDAO update=new ManagerDAO();
+				update.UpdateManager(name, email, phone, addr, newpassword, (String)session.getAttribute("username"));
+				session.invalidate();
+			
+		}
 		
 	}
 
