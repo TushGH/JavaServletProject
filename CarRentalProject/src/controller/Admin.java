@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import data.ManagerDAO;
 import data.UserDAO;
 
 /**
@@ -46,7 +48,7 @@ public class Admin extends HttpServlet {
 			System.out.println(status);
 			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
 		}
-		if(sub.equalsIgnoreCase("editrole")){
+		else if(sub.equalsIgnoreCase("editrole")){
 			System.out.println("The to be revoked user is " + request.getParameter("username"));
 			UserDAO user = new UserDAO();
 			int status = user.editrole(request.getParameter("username"),request.getParameter("role"));
@@ -55,6 +57,24 @@ public class Admin extends HttpServlet {
 			
 			
 			
+		}
+		else if(sub.equalsIgnoreCase("Update")){
+			HttpSession session = request.getSession();
+			String username=request.getParameter("username");
+			session.setAttribute("username",username);
+			String name=request.getParameter("name");
+			String email=request.getParameter("email");
+			String phone=request.getParameter("phone");
+			String addr=request.getParameter("addr");
+			String curpassword=request.getParameter("curpassword");
+			String newpassword=request.getParameter("newpassword");
+			String conpassword=request.getParameter("conpassword");
+			//System.out.println(session.getAttribute("username"));
+			ManagerDAO update=new ManagerDAO();
+			update.UpdateManager(name, email, phone, addr, newpassword, username);
+			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
+			session.invalidate();
+		
 		}
 	}
 
