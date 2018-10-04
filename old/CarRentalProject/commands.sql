@@ -14,7 +14,7 @@ CREATE TABLE user (username varchar(100), role varchar(100), name varchar(100) ,
 
 CREATE TABLE cars (CarName varchar(100), capacity int, Weekday double, Weekend double, Week double,GPS double, OnStar double, SiriusXm double);
 
-CREATE TABLE reservedcars (Confirmationid int, CarName varchar(100), Username varchar(100), Starttime time, Startdate date, Endtime time, EndDate Date);
+CREATE TABLE reserved_cars (Confirmationid int, CarName varchar(100), Username varchar(100), Starttime time, Startdate date, Endtime time, EndDate Date);
 
 
 INSERT INTO cars(CarName, capacity , Weekday, Weekend, Week, GPS, OnStar, SiriusXm)VALUES('Smart', '1','32.99','37.99','230.93','3','5','7'),
