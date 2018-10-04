@@ -28,7 +28,7 @@
 
 
 
-<input type="submit" name="submit" value="Change Role" >
+<input type="submit" name="submit" value="editrole" >
 </form>
 </body>
 </html>

@@ -153,9 +153,9 @@ public int UpdateManager(String name, String email, String phone, String addr, S
 			      preparedStmt.setString   (5, newpassword);
 			      preparedStmt.setString   (6, username);		      
 			      
-			      status  =  preparedStmt.executeUpdate();					        
+			      System.out.println( preparedStmt.executeUpdate());					        
 			     
-			     
+			     status = 1 ;
 			      con.close();
 		 System.out.println("Database connection successful");		
 	}
