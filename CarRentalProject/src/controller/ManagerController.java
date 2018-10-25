@@ -69,7 +69,27 @@ public class ManagerController extends HttpServlet {
 			      
 			      }
 				doGet(request, response);
-			}
+			}  
+				if(sub.equalsIgnoreCase("UpdateProfile")) {
+
+					String username = request.getParameter("username");
+					System.out.println(username + " **********");
+					String name=request.getParameter("name");
+					String email=request.getParameter("email");
+					String phone=request.getParameter("phone");
+					String addr=request.getParameter("addr");
+					String curpassword=request.getParameter("curpassword");
+					String newpassword=request.getParameter("newpassword");
+					String conpassword=request.getParameter("conpassword");
+					System.out.println(username + " " + email + " " + phone + " addr" + " " + curpassword + " " + conpassword);
+					ManagerDAO update=new ManagerDAO();
+					update.UpdateManager(name, email, phone, addr, newpassword, username);
+					request.setAttribute("Message", "Profile Updates");
+					request.getRequestDispatcher("ManagerHomePage.jsp").forward(request, response);
+					
+				}
+				
+				
 				else if(sub.equalsIgnoreCase("ViewDetails")) {
 					String reservationid = request.getParameter("confirmationid");
 					System.out.println(reservationid+ " ");
@@ -132,6 +152,7 @@ public class ManagerController extends HttpServlet {
 						session.invalidate();
 					
 				}
+				
 	}
 
 }

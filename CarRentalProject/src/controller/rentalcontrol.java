@@ -68,7 +68,8 @@ public class rentalcontrol extends HttpServlet {
 				System.out.println("The Pass");
 				//request.getRequestDispatcher("error.jsp").forward(request, response);
 				 if( Role.equals("user")){
-					System.out.println("The Authentication Pass");session.setAttribute("username", username);
+					System.out.println("The Authentication Pass");
+					session.setAttribute("username", username);
 					session.setAttribute("UN", username);
 					request.getRequestDispatcher("UserHomePage.jsp").forward(request, response);
 					
@@ -76,12 +77,16 @@ public class rentalcontrol extends HttpServlet {
 				 else if( Role.equals("manager"))
 				{
 					System.out.println("The Authentication Pass");
+					session.setAttribute("username", username);
+					session.setAttribute("UN", username);
 					request.getRequestDispatcher("ManagerHomePage.jsp").forward(request, response);
 					
 				}
 				else
 				{
 					System.out.println("The Authentication Pass");
+					session.setAttribute("username", username);
+					session.setAttribute("UN", username);
 					request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
 				 
 				}
@@ -150,6 +155,51 @@ public class rentalcontrol extends HttpServlet {
 			request.setAttribute("fno", user.getPhoneNo());
 			request.setAttribute("add", user.getAddress());
 			request.getRequestDispatcher("UpdateProfile2.jsp").forward(request, response);
+			
+		}
+		else if(sub.equalsIgnoreCase("editprofileM")) {
+		    String username =  (String) session.getAttribute("UN");
+			System.out.println("Useruser"  + username);
+			UserDAO ud = new UserDAO();
+			user user = ud.getUserInfo(username);
+			System.out.println(user.getUsername());
+			request.setAttribute("uname", user.getUsername());
+			System.out.println(user.getFullName());
+			request.setAttribute("fname", user.getFullName());
+			request.setAttribute("email1", user.getEmail());
+			request.setAttribute("fno", user.getPhoneNo());
+			request.setAttribute("add", user.getAddress());
+			request.getRequestDispatcher("UpdateProfile.jsp").forward(request, response);
+			
+		}
+		else if(sub.equalsIgnoreCase("editprofileA")) {
+		    String username =  (String) session.getAttribute("UN");
+			System.out.println("Useruser"  + username);
+			UserDAO ud = new UserDAO();
+			user user = ud.getUserInfo(username);
+			System.out.println(user.getUsername());
+			request.setAttribute("uname", user.getUsername());
+			System.out.println(user.getFullName());
+			request.setAttribute("fname", user.getFullName());
+			request.setAttribute("email1", user.getEmail());
+			request.setAttribute("fno", user.getPhoneNo());
+			request.setAttribute("add", user.getAddress());
+			request.getRequestDispatcher("UpdateProfile3.jsp").forward(request, response);
+			
+		}
+		else if(sub.equalsIgnoreCase("UserProfileUpdate")) {
+		    String username =  request.getParameter("username");
+			System.out.println("Useruser"  + username);
+			UserDAO ud = new UserDAO();
+			user user = ud.getUserInfo(username);
+			System.out.println(user.getUsername());
+			request.setAttribute("uname", user.getUsername());
+			System.out.println(user.getFullName());
+			request.setAttribute("fname", user.getFullName());
+			request.setAttribute("email1", user.getEmail());
+			request.setAttribute("fno", user.getPhoneNo());
+			request.setAttribute("add", user.getAddress());
+			request.getRequestDispatcher("EditUserProfile.jsp").forward(request, response);
 			
 		}
 			

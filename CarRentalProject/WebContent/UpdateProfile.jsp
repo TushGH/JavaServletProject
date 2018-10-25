@@ -18,29 +18,29 @@
 <form name="Loginform" action="${pageContext.request.contextPath}/ManagerController" method="post" style="width: 300px; ">
 <table style="width: 50%">
 	<tr>
-		<td>User Name</td>
-		<td><input type="text" name="username" id="username"/></td>
+		<td></td>
+		<td><input type="hidden" name="username" value="${uname}" id="username"/></td>
 	</tr>
 	
 	<tr>
 		<td>Full Name</td>
-		<td><input type="text" name="name" id="fullname"/></td>
+		<td><input type="text" name="name"  value="${fname}" id="fullname"/></td>
 	</tr>
 	
 
 <tr>
 		<td>Email</td>
-		<td><input type="email" name="email" id="email"/></td>
+		<td><input type="email" name="email"  value="${email1}" id="email"/></td>
 	</tr>	
 	
 	<tr>
 		<td>Phone Number:</td>
-		<td><input type="text" name="phone" id="phoneno"/></td>
+		<td><input type="text" name="phone"  value="${fno}" id="phoneno"/></td>
 	</tr>
 	
 <tr>
 		<td>Address</td>
-		<td><input type="textarea" rows="4" columns="5" name="addr" id="address"/></td>
+		<td><input type="textarea" rows="4"  value="${add}"  columns="5" name="addr" id="address"/></td>
 	</tr>
 <tr>
 		<td>Current Password</td>

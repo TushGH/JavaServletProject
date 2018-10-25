@@ -59,6 +59,7 @@ public class UserController extends HttpServlet {
 			System.out.println(username + " " + email + " " + phone + " addr" + " " + curpassword + " " + conpassword);
 			ManagerDAO update=new ManagerDAO();
 			update.UpdateManager(name, email, phone, addr, newpassword, username);
+			request.setAttribute("Message", "Profile Updates");
 			request.getRequestDispatcher("UserHomePage.jsp").forward(request, response);
 			
 		}

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +12,13 @@
 <body style="width:450px;">
 <H2 align="center">WELCOME TO RENTAL MANAGER HOMEPAGE</H2>
 
+<h2> Welcome <input name="Username"  value="<c:out value='${username}'/>" type="text"  style =" color: blue; " disabled="disabled"></h2>
+
+<input name="errMsg" value="<c:out value='${Message}'/>"
+		type="text"
+		style="background-color: white; color: red; border: none; width: 800px"
+		disabled="disabled">
+		
 <form name="Loginform" action="${pageContext.request.contextPath}/rentalcontrol" method="post" style="width: 300px; ">
 
 <input type="submit"  name = "submit" value = "logout" />
@@ -22,10 +32,13 @@
 3.<a href="SearchCar.jsp"> View Available Car </a> <br>
 4.<a href="AddCar.jsp"> Add a Car </a> <br>
 5.<a href="DeleteRental.jsp"> Delete Rental </a> <br>
-6.<a href="UpdateProfile.jsp"> Update Profile </a> <br>
+<br><br><br>
+
+<form name="Loginform" action="${pageContext.request.contextPath}/rentalcontrol" method="post" style="width: 300px; ">
+
+<input type="submit" name="submit" value="editprofileM" style ="color: yellow;  " >
 
 
-
-
+</form>
 </body>
 </html>

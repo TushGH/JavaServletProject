@@ -14,6 +14,12 @@
 <h2> Welcome <input name="Username"  value="<c:out value='${username}'/>" type="text"  style =" color: blue; " disabled="disabled"></h2>
 
 <img src="car4.png" alt="car img" height="100" width="100">
+
+<input name="errMsg" value="<c:out value='${Message}'/>"
+		type="text"
+		style="background-color: white; color: red; border: none; width: 800px"
+		disabled="disabled">
+		
 <form name="Loginform" action="${pageContext.request.contextPath}/rentalcontrol" method="post" style="width: 300px; ">
 
 <input type="submit"  name = "submit" value = "logout" />
