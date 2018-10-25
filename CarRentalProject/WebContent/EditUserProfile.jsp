@@ -44,18 +44,7 @@
 		<td><input type="textarea" rows="4" columns="5"  value="${add}" name="addr" id="address"/></td>
 	</tr>
 <tr>
-		<td>Current Password</td>
-		<td><input type="password" name="curpassword" id="currentpassword"/></td>
-	</tr>
-	<tr>
-		<td>New Password</td>
-		<td><input type="password" name="newpassword" id="newpassword"/></td>
-	</tr>
-	<tr>
-		<td>Confirm Password</td>
-		<td><input type="password" name="conpassword" id="confirmpassword"/></td>
-	</tr>
-
+		
 
 
 </table>

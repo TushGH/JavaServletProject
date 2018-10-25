@@ -11,7 +11,7 @@
 <h2>ADD CAR</h2>
 <img src="car4.png" alt="car img" height="100" width="100">
 <form name="Loginform" action="${pageContext.request.contextPath}/rentalcontrol" method="post" style="width: 300px; ">
-<input type ="button" value="LOGOUT">
+
 <input type="submit"  name = "submit" value = "logout" />
 </form>
 <br><br><br>

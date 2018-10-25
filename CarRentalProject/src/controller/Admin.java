@@ -46,6 +46,7 @@ public class Admin extends HttpServlet {
 			UserDAO user = new UserDAO();
 			int status = user.revoke(request.getParameter("username"));
 			System.out.println(status);
+			request.setAttribute("Message", request.getParameter("username") +  "  IS BLACKLISTED");
 			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
 		}
 		else if(sub.equalsIgnoreCase("editrole")){
@@ -53,6 +54,7 @@ public class Admin extends HttpServlet {
 			UserDAO user = new UserDAO();
 			int status = user.editrole(request.getParameter("username"),request.getParameter("role"));
 			System.out.println(status);
+			request.setAttribute("Message", request.getParameter("username") +  "'s role is changed to " + request.getParameter("role"));
 			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
 			
 			
@@ -84,12 +86,12 @@ public class Admin extends HttpServlet {
 			String email=request.getParameter("email");
 			String phone=request.getParameter("phone");
 			String addr=request.getParameter("addr");
-			String curpassword=request.getParameter("curpassword");
-			String newpassword=request.getParameter("newpassword");
-			String conpassword=request.getParameter("conpassword");
-			System.out.println(username + " " + email + " " + phone + " addr" + " " + curpassword + " " + conpassword);
+//			String curpassword=request.getParameter("curpassword");
+//			String newpassword=request.getParameter("newpassword");
+//			String conpassword=request.getParameter("conpassword");
+			System.out.println(username + " " + email + " " + phone + " addr");
 			ManagerDAO update=new ManagerDAO();
-			update.UpdateManager(name, email, phone, addr, newpassword, username);
+			update.UpdateUserFromManager(name, email, phone, addr, username);
 			request.setAttribute("Message", "User Profile Updates");
 			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
 			

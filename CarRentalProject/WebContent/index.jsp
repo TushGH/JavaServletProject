@@ -15,7 +15,7 @@
 		disabled="disabled">
 	<h2>WELCOME TO CAMPUS RENTAL CAR</h2>
 	<img src="car4.png" alt="car img" height="100" width="100">
-	<a href="index.jsp" class="logoutstyle">Logout</a>
+	
 	<br>
 	<br>
 	<br>

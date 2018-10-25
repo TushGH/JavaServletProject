@@ -54,21 +54,24 @@ public class ManagerController extends HttpServlet {
 				ArrayList<ManagerModel> mm =    user.ViewAllCarsRented(startdate, enddate);
 				response.setContentType("text/html");
                 
-			     
+			      int count = 1 ;
 			      PrintWriter out = response.getWriter();
 			      out.println("<head>");
 			      out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"test.css\" media=\"screen\" />");
 			      out.println("</head>");
+			      out.println("<body>");
 			      out.println("<img src=\"car4.png\" alt=\"car img\" height=\"100\" width=\"100\">");
 			      out.println("<h1> List Of Reservations  <h1>");
+			      out.println("<table>");
+			      out.println("<tr> <td> Index </td> <td> CAR NAME </td><td> ReservationID </td><td> Start Time </td> <td> Start Date </td><td> END Time </td><td> END DATE </td> </tr>");
 			      for (ManagerModel a : mm){
-			    	  out.println( a.getCarName() + "   " + a.getReservationid() );  
-			    	  out.println( " Start Time "+ a.getStartTime() + " StartDate  " + a.getstartdate() );  
-			    	  out.println( " END Time "+ a.getEndTime() + "END Date  " + a.getenddate() );  
-			        
+			    	  
+			    	  out.println("<tr> <td> " + count + "</td><td> " + a.getCarName() + " </td><td> " +a.getReservationid() + " </td><td>" +a.getStartTime() + " </td> <td> " + a.getstartdate() + " </td><td> " +a.getEndTime() + " </td><td> " +a.getenddate() + " </td> </tr>");
+	                  count ++ ;
 			      
 			      }
-				doGet(request, response);
+			      out.println("</table></body>");
+				
 			}  
 				if(sub.equalsIgnoreCase("UpdateProfile")) {
 
@@ -96,21 +99,24 @@ public class ManagerController extends HttpServlet {
 					ManagerDAO result=new ManagerDAO();
 					ArrayList<ManagerModel>  mm =     result.ViewSpecificRental(reservationid);
 					response.setContentType("text/html");
-	                
+					 int count = 1 ;
 				     
-				      PrintWriter out = response.getWriter();
+					 PrintWriter out = response.getWriter();
 				      out.println("<head>");
 				      out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"test.css\" media=\"screen\" />");
 				      out.println("</head>");
+				      out.println("<body>");
 				      out.println("<img src=\"car4.png\" alt=\"car img\" height=\"100\" width=\"100\">");
-				      out.println("<h1> Details of  " +  reservationid  + "  <h1>");
+				      out.println("<h1> List Of Reservations  <h1>");
+				      out.println("<table>");
+				      out.println("<tr> <td> Index </td> <td> CAR NAME </td><td> ReservationID </td><td> Start Time </td> <td> Start Date </td><td> END Time </td><td> END DATE </td> </tr>");
 				      for (ManagerModel a : mm){
-				    	  out.println( a.getCarName() + "   " + a.getReservationid() );  
-				    	  out.println( " Start Time "+ a.getStartTime() + " StartDate  " + a.getstartdate() );  
-				    	  out.println( " END Time "+ a.getEndTime() + "END Date  " + a.getenddate() );  
-				        
+				    	  
+				    	  out.println("<tr> <td> " + count + "</td><td> " + a.getCarName() + " </td><td> " +a.getReservationid() + " </td><td>" +a.getStartTime() + " </td> <td> " + a.getstartdate() + " </td><td> " +a.getEndTime() + " </td><td> " +a.getenddate() + " </td> </tr>");
+		                  count ++ ;
 				      
 				      }
+				      out.println("</table></body>");
 				}
 				else if(sub.equalsIgnoreCase("AddCar")) {
 					String CarName=request.getParameter("CarName");
@@ -123,6 +129,7 @@ public class ManagerController extends HttpServlet {
 					String SiriusXM=request.getParameter("SiriusXM");
 					ManagerDAO add=new ManagerDAO();
 					add.AddCar(CarName,Capacity,WeekDay,WeekEnd,Week,Gps,OnStar,SiriusXM);
+					request.setAttribute("Message", "CAR ADDED SUCCESSFULLY  !!!");
 					request.getRequestDispatcher("ManagerHomePage.jsp").forward(request, response);
 				
 				}
@@ -131,6 +138,7 @@ public class ManagerController extends HttpServlet {
 				System.out.println(reservationid+ " ");
 				ManagerDAO result=new ManagerDAO();
 				result.delete(reservationid);
+				request.setAttribute("Message", "RENTAL DELETION SUCCESSFULLY FOR RENTAL ID " + reservationid);
 				request.getRequestDispatcher("ManagerHomePage.jsp").forward(request, response);
 				}
 				

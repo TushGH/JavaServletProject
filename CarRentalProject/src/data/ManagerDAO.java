@@ -168,6 +168,36 @@ public int UpdateManager(String name, String email, String phone, String addr, S
 	}
 	return status;
 }
-
+public int UpdateUserFromManager(String name, String email, String phone, String addr,  String username) {
+	// TODO Auto-generated constructor stub
+	int status = 0 ;
+	String role;
+	String query="UPDATE user SET NAME=?,EMAIL=?,PHONE=?,ADDRESS=? WHERE USERNAME=?";
+	try {
+		Class.forName("com.mysql.jdbc.Driver");  
+		java.sql.Connection con=DriverManager.getConnection(  
+		"jdbc:mysql://localhost:3306/test","root",""); 	      
+		          PreparedStatement preparedStmt = con.prepareStatement(query);
+			      preparedStmt.setString (1, name);
+			      preparedStmt.setString   (2, email); 
+			      preparedStmt.setString   (3, phone);
+			      preparedStmt.setString   (4, addr);
+			      preparedStmt.setString   (5, username);		      
+			      
+			      System.out.println( preparedStmt.executeUpdate());					        
+			     
+			     status = 1 ;
+			      con.close();
+		 System.out.println("Database connection successful");		
+	}
+	
+	catch(Exception e)
+	{
+		System.out.println(e);
+		status=0;
+		System.out.println("Database connection unsuccessful");
+	}
+	return status;
+}
 }
 

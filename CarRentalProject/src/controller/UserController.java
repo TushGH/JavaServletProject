@@ -39,7 +39,7 @@ public class UserController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	
@@ -59,7 +59,7 @@ public class UserController extends HttpServlet {
 			System.out.println(username + " " + email + " " + phone + " addr" + " " + curpassword + " " + conpassword);
 			ManagerDAO update=new ManagerDAO();
 			update.UpdateManager(name, email, phone, addr, newpassword, username);
-			request.setAttribute("Message", "Profile Updates");
+			request.setAttribute("Message", "PROFILE UPDATED SUCCESSFULLY !!!");
 			request.getRequestDispatcher("UserHomePage.jsp").forward(request, response);
 			
 		}
@@ -71,30 +71,34 @@ public class UserController extends HttpServlet {
 			ArrayList<ManagerModel> mm =    user.ViewAllCarsRented(startdate, enddate);
 			response.setContentType("text/html");
             
-		     
+		      int count = 1 ;
 		      PrintWriter out = response.getWriter();
 		      out.println("<head>");
 		      out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"test.css\" media=\"screen\" />");
 		      out.println("</head>");
+		      out.println("<body>");
 		      out.println("<img src=\"car4.png\" alt=\"car img\" height=\"100\" width=\"100\">");
 		      out.println("<h1> List Of Reservations  <h1>");
+		      out.println("<table>");
+		      out.println("<tr> <td> Index </td> <td> CAR NAME </td><td> ReservationID </td><td> Start Time </td> <td> Start Date </td><td> END Time </td><td> END DATE </td> </tr>");
 		      for (ManagerModel a : mm){
-		    	  out.println( a.getCarName() + "   " + a.getReservationid() );  
-		    	  out.println( " Start Time "+ a.getStartTime() + " StartDate  " + a.getstartdate() );  
-		    	  out.println( " END Time "+ a.getEndTime() + "END Date  " + a.getenddate() );  
-		        
+		    	  
+		    	  out.println("<tr> <td> " + count + "</td><td> " + a.getCarName() + " </td><td> " +a.getReservationid() + " </td><td>" +a.getStartTime() + " </td> <td> " + a.getstartdate() + " </td><td> " +a.getEndTime() + " </td><td> " +a.getenddate() + " </td> </tr>");
+                  count ++ ;
 		      
 		      }
-			doGet(request, response);
+		      out.println("</table></body>");
+			
 		}
 		else if(sub.equalsIgnoreCase("CancelReservation")) {
 			String reservationid = request.getParameter("confirmationid");
 			System.out.println(reservationid+ " ");
 			ManagerDAO result=new ManagerDAO();
 			result.delete(reservationid);
+			request.setAttribute("Message", "Reservation cancled for Reservation ID " + reservationid);
 			request.getRequestDispatcher("UserHomePage.jsp").forward(request, response);
 		}
-		doGet(request, response);
+		
 	}
 
 }

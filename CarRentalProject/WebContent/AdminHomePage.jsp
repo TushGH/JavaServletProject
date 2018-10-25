@@ -23,9 +23,9 @@
 </form>
 <img src="car4.png" alt="car img" height="100" width="100">
 <br><br><br>
-1.<a href="UpdateProfile3.jsp"> Edit User Profile </a> <br>
-2.<a href="EditUserRole.jsp"> Change User Roles</a> <br>
-3.<a href="RevokeRenter.jsp"> Revoke Renter </a> <br>
+
+1.<a href="EditUserRole.jsp"> Change User Roles</a> <br>
+2.<a href="RevokeRenter.jsp"> Revoke Renter </a> <br>
 
 
 
@@ -33,14 +33,14 @@
 <br><br>
 
 <form name="Loginform" action="${pageContext.request.contextPath}/rentalcontrol" method="post" style="width: 300px; ">
-Username <input type = "text" name = "username"> <br>
-Update Users Profile  here.. :) <input type="submit" name="submit" value="UserProfileUpdate" style ="color: yellow;  " >
+ Update Users Profile  here.. Username <input type = "text" name = "username">
+ <input type="submit" name="submit" value="UserProfileUpdate"    >
 </form>
 
 
 <form name="Loginform" action="${pageContext.request.contextPath}/rentalcontrol" method="post" style="width: 300px; ">
 
-Update your profile here.. :) <br> <input type="submit" name="submit" value="editprofileA" style ="color: yellow;  " >
+Update your profile here.. :) <br> <input type="submit" name="submit" value="editprofileA"  >
 </form>
 </body>
 </html>
