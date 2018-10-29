@@ -265,9 +265,9 @@ public class user {
   {
 	  String result="";
 	  if (!stringSize(password,6,10))
-			{result= "Your password must between 6 and 10 digits";}
-	 // else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@._#$%^&+=])$"))
-		//  {result="Your password must atleast contain one 1 uppercase,1 lowercase and 1 special character and 1 number";}
+			{result= "Your password must atleast contain one 1 uppercase,1 lowercase  and 1 number";}
+	  //else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])$"))
+		// {result="Your password must atleast contain one 1 uppercase,1 lowercase and 1 special character and 1 number";}
 	  else 
 		  {result="";}
 	  return result;

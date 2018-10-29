@@ -20,7 +20,7 @@ import model.user;
 @WebServlet("/rentalcontrol")
 public class rentalcontrol extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    public static String g_uname ;  
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -69,6 +69,7 @@ public class rentalcontrol extends HttpServlet {
 				//request.getRequestDispatcher("error.jsp").forward(request, response);
 				 if( Role.equals("user")){
 					System.out.println("The Authentication Pass");
+					g_uname = username ;
 					session.setAttribute("username", username);
 					session.setAttribute("UN", username);
 					request.getRequestDispatcher("UserHomePage.jsp").forward(request, response);
@@ -77,6 +78,7 @@ public class rentalcontrol extends HttpServlet {
 				 else if( Role.equals("manager"))
 				{
 					System.out.println("The Authentication Pass");
+					g_uname = username ;
 					session.setAttribute("username", username);
 					session.setAttribute("UN", username);
 					request.getRequestDispatcher("ManagerHomePage.jsp").forward(request, response);
@@ -85,6 +87,7 @@ public class rentalcontrol extends HttpServlet {
 				else
 				{
 					System.out.println("The Authentication Pass");
+					g_uname = username ;
 					session.setAttribute("username", username);
 					session.setAttribute("UN", username);
 					request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
@@ -95,7 +98,7 @@ public class rentalcontrol extends HttpServlet {
 			
 			else
 			{
-				request.setAttribute("emsgs", ui);
+				 request.setAttribute("emsgs", ui);
 				 request.getRequestDispatcher("index.jsp").forward(request, response);
 				
 				

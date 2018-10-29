@@ -10,6 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import data.ManagerDAO;
 import data.UserDAO;
+import model.AdminModel;
+import model.UpdateProfileModel;
+import model.revoke_errormsgs;
+import model.update_errormsgs;
 
 /**
  * Servlet implementation class Admin
@@ -45,9 +49,20 @@ public class Admin extends HttpServlet {
 			System.out.println("The to be revoked user is " + request.getParameter("username"));
 			UserDAO user = new UserDAO();
 			int status = user.revoke(request.getParameter("username"));
-			System.out.println(status);
-			request.setAttribute("Message", request.getParameter("username") +  "  IS BLACKLISTED");
-			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
+			revoke_errormsgs em = new revoke_errormsgs();
+			AdminModel am = new AdminModel(request.getParameter("username"));
+			am.validateAdminModel(am, em);
+			if(em.getR_errorMsg().equals("")){
+				System.out.println("**** revoke 111*****" + em.getR_usernameError());
+				System.out.println("**** revoke 111222*****" + em.getR_errorMsg());
+				System.out.println(status);
+				request.setAttribute("Message", request.getParameter("username") +  "  IS BLACKLISTED");
+				request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
+			}else{
+				System.out.println("**** revoke *****" + em.getR_usernameError());
+				request.setAttribute("emsgs", em);
+				request.getRequestDispatcher("RevokeRenter.jsp").forward(request, response);
+			}
 		}
 		else if(sub.equalsIgnoreCase("editrole")){
 			System.out.println("The to be revoked user is " + request.getParameter("username"));
@@ -60,7 +75,7 @@ public class Admin extends HttpServlet {
 			
 			
 		}
-		if(sub.equalsIgnoreCase("UpdateProfile")) {
+		if(sub.equalsIgnoreCase("Update")) {
 
 			String username = request.getParameter("username");
 			System.out.println(username + " **********");
@@ -71,12 +86,30 @@ public class Admin extends HttpServlet {
 			String curpassword=request.getParameter("curpassword");
 			String newpassword=request.getParameter("newpassword");
 			String conpassword=request.getParameter("conpassword");
+			UpdateProfileModel upm = new UpdateProfileModel(username, name, email, phone, addr, curpassword, newpassword, conpassword);
+			System.out.println("**** IN ADMIN CONTROLLER ****");
+			update_errormsgs uperr = new update_errormsgs();
+			upm.validateUpdateProfile(upm, uperr);
+			if(uperr.getU_errorMsg().equals("")){
+				System.out.println("*** ERROR MSG NO MESSAGE "+uperr.getU_nameError());
 			System.out.println(username + " " + email + " " + phone + " addr" + " " + curpassword + " " + conpassword);
 			ManagerDAO update=new ManagerDAO();
 			update.UpdateManager(name, email, phone, addr, newpassword, username);
 			request.setAttribute("Message", "Profile Updates");
 			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
-			
+			}
+			else{
+				System.out.println("*** ERROR MSG "+uperr.getU_nameError());
+				request.setAttribute("uname", username);
+				request.setAttribute("fname", name);
+				request.setAttribute("email1", email);
+				request.setAttribute("fno", phone);
+				request.setAttribute("add", addr);
+				request.setAttribute("emsgs", uperr);
+				
+				request.getRequestDispatcher("UpdateProfile3.jsp").forward(request, response);
+				
+			}
 		}
 		if(sub.equalsIgnoreCase("UpdateUserProfile")) {
 
@@ -96,24 +129,25 @@ public class Admin extends HttpServlet {
 			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
 			
 		}
-		else if(sub.equalsIgnoreCase("Update")){
-			HttpSession session = request.getSession();
-			String username=request.getParameter("username");
-			session.setAttribute("username",username);
-			String name=request.getParameter("name");
-			String email=request.getParameter("email");
-			String phone=request.getParameter("phone");
-			String addr=request.getParameter("addr");
-			String curpassword=request.getParameter("curpassword");
-			String newpassword=request.getParameter("newpassword");
-			String conpassword=request.getParameter("conpassword");
-			//System.out.println(session.getAttribute("username"));
-			ManagerDAO update=new ManagerDAO();
-			update.UpdateManager(name, email, phone, addr, newpassword, username);
-			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
-			session.invalidate();
-		
-		}
+		else{}
+//		else if(sub.equalsIgnoreCase("Update")){
+//			HttpSession session = request.getSession();
+//			String username=request.getParameter("username");
+//			session.setAttribute("username",username);
+//			String name=request.getParameter("name");
+//			String email=request.getParameter("email");
+//			String phone=request.getParameter("phone");
+//			String addr=request.getParameter("addr");
+//			String curpassword=request.getParameter("curpassword");
+//			String newpassword=request.getParameter("newpassword");
+//			String conpassword=request.getParameter("conpassword");
+//			//System.out.println(session.getAttribute("username"));
+//			ManagerDAO update=new ManagerDAO();
+//			update.UpdateManager(name, email, phone, addr, newpassword, username);
+//			request.getRequestDispatcher("AdminHomePage.jsp").forward(request, response);
+//			session.invalidate();
+//		
+//		}
 	}
 
 }

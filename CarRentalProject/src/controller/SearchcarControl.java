@@ -48,31 +48,24 @@ public class SearchcarControl extends HttpServlet {
 		{
 			String startdate = request.getParameter("startdate");
 			String enddate=request.getParameter("enddate");
-			String starttime = request.getParameter("starttime");
-			String endtime=request.getParameter("endtime");
+			// starttime = request.getParameter("starttime");
+			//String endtime=request.getParameter("endtime");
 			
-		String passengers=	request.getParameter("passengers");
+		
 		SearchCarDAO sc = new SearchCarDAO();
 		ArrayList<AvailableCars> avail = new ArrayList<AvailableCars>();
-		avail=sc.searchcar(startdate, enddate, starttime, endtime, passengers);
+		avail=sc.searchcar(startdate, enddate);
 		System.out.println("I am printing cars");
-	    //
-		
-		  PrintWriter out = response.getWriter();
-	      out.println("<head>");
-	      out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"test.css\" media=\"screen\" />");
-	      out.println("</head>");
-	      out.println("<img src=\"car4.png\" alt=\"car img\" height=\"100\" width=\"100\">");
-	      out.println("<h1> Available car <h1>");
-	      
+	   
+		System.out.println("the available cars are");
 		for(int i=0;i<avail.size();i++)
 		{
-	      out.println("the available cars are");
-	      out.println(avail.get(i).getCarName());
+			System.out.println(avail.get(i).getCarName());
 			
 		}
 		
-		
+		request.setAttribute("caravail", avail);
+		 request.getRequestDispatcher("ReserveCar.jsp").forward(request, response);
 		
 			
 		}

@@ -10,7 +10,7 @@ public class ManagerDAO {
 	static PreparedStatement ps;
 	ManagerModel viewMy=null;
 public ArrayList ViewAllCarsRented(String startdate,String enddate) {
-	String query="select * from reserved_cars where startdate>=CAST(? AS DATE) and enddate<=CAST(? as DATE);";
+	String query="select * from reservedcars where startdate>=CAST(? AS DATE) and enddate<=CAST(? as DATE);";
 	ArrayList<ManagerModel> mm = null ;
 	try {
 		Class.forName("com.mysql.jdbc.Driver");  
@@ -30,13 +30,7 @@ public ArrayList ViewAllCarsRented(String startdate,String enddate) {
 	    	viewMy.setEndTime(rs1.getString("EndTime"));
 	    	viewMy.setenddate(rs1.getString("EndDate"));
 	    	mm.add(viewMy);
-//	    	System.out.println(viewMy.getReservationid());
-//	    	System.out.println(viewMy.getCarName());
-//	    	System.out.println(viewMy.getStartTime());
-//	    	System.out.println(viewMy.getstartdate());
-//	    	System.out.println(viewMy.getEndTime());
-//	    	System.out.println(viewMy.getenddate());
-//	    	
+
 	    }
 	    con.close();
 	    
@@ -47,7 +41,7 @@ public ArrayList ViewAllCarsRented(String startdate,String enddate) {
 }
 public ArrayList<ManagerModel> ViewSpecificRental(String Reservationid){
 	
-String query="select * from reserved_cars where Confirmationid=?";
+String query="select * from reservedcars where Confirmationid=?";
 ArrayList<ManagerModel> mm = null ;
 try {
 	Class.forName("com.mysql.jdbc.Driver");  
@@ -125,7 +119,7 @@ public void delete(String reservationid) {
 		Class.forName("com.mysql.jdbc.Driver");  
 		Connection con=DriverManager.getConnection(  
 			      "jdbc:mysql://localhost:3306/test","root","");  
-		String query="delete from reserved_cars where Confirmationid=?" ;
+		String query="delete from reservedcars where Confirmationid=?" ;
 		ps=con.prepareStatement(query);
 	    ps.setString(1,reservationid);
 	    ps.execute();

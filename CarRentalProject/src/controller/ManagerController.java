@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 import com.mysql.fabric.xmlrpc.base.Array;
 
 import data.ManagerDAO;
+import model.AddCarModel;
 import model.ManagerModel;
+import model.addcar_errormsgs;
 
 /**
  * Servlet implementation class ManagerController
@@ -127,10 +129,27 @@ public class ManagerController extends HttpServlet {
 					String Gps=request.getParameter("Gps");
 					String OnStar=request.getParameter("OnStar");
 					String SiriusXM=request.getParameter("SiriusXM");
-					ManagerDAO add=new ManagerDAO();
-					add.AddCar(CarName,Capacity,WeekDay,WeekEnd,Week,Gps,OnStar,SiriusXM);
-					request.setAttribute("Message", "CAR ADDED SUCCESSFULLY  !!!");
-					request.getRequestDispatcher("ManagerHomePage.jsp").forward(request, response);
+					AddCarModel acm = new AddCarModel(CarName, Capacity, WeekDay, WeekEnd, Week, Gps, OnStar, SiriusXM);
+					addcar_errormsgs em = new addcar_errormsgs();
+					acm.validateAddCarModel(acm, em);
+					System.out.println(em.getA_errorMsg());
+					if(em.getA_errorMsg().equals("")){
+						ManagerDAO add=new ManagerDAO();
+						add.AddCar(CarName,Capacity,WeekDay,WeekEnd,Week,Gps,OnStar,SiriusXM);
+						request.setAttribute("Message", "CAR ADDED SUCCESSFULLY  !!!");
+						request.getRequestDispatcher("ManagerHomePage.jsp").forward(request, response);
+					}else{
+						request.setAttribute("emsgs", em);
+						request.setAttribute("carname", CarName);
+						request.setAttribute("capacity", Capacity);
+						request.setAttribute("gps", Gps);
+						request.setAttribute("onstar", OnStar);
+						request.setAttribute("xm", SiriusXM);
+						request.setAttribute("WD", WeekDay);
+						request.setAttribute("WE", WeekEnd);
+						request.setAttribute("ww", Week);
+						request.getRequestDispatcher("AddCar.jsp").forward(request, response);
+					}
 				
 				}
 				else if(sub.equalsIgnoreCase("DeleteRental")) {

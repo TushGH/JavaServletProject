@@ -1,6 +1,6 @@
 package model;
 
-public class UpdateProfile {
+public class UpdateProfileModel {
 	private String Username ;
 	private String curpassword ;
 	private String newpassword ;
@@ -74,7 +74,7 @@ public class UpdateProfile {
 	public void setaddr(String addr) {
 		this.addr = addr;
 	}
-	public UpdateProfile(String username, String fullName, String email, String phoneNo, String addr,
+	public UpdateProfileModel(String username, String fullName, String email, String phoneNo, String addr,
 			String curpassword, String newpassword, String conpassword) {
 		super();
 		Username = username;
@@ -87,18 +87,18 @@ public class UpdateProfile {
 		this.addr = addr;
 	}
     
-	public UpdateProfile() {
+	public UpdateProfileModel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void validateUpdateProfile(UpdateProfile update, update_errormsgs updateerrorMsgs) {
+	public void validateUpdateProfile(UpdateProfileModel update, update_errormsgs updateerrorMsgs) {
 		
 		updateerrorMsgs.setU_nameError(validateupdatename(update.getFullName()));
 		updateerrorMsgs.setU_addressError(validateupdateaddress(update.getaddr()));
 		updateerrorMsgs.setU_curpasswordError(validateupdatecurpassword(update.getcurpassword()));
 		updateerrorMsgs.setU_newpasswordError(validateupdatenewpassword(update.getnewpassword()));
-		updateerrorMsgs.setU_conpasswordError(validateupdateconpassword(update.getconpassword()));
+		//updateerrorMsgs.setU_conpasswordError(validateupdateconpassword(update.getconpassword()));
 		updateerrorMsgs.setU_emailError(validateupdateemail(update.getEmail()));
 		updateerrorMsgs.setU_phonenoError(validateupdatephoneno(update.getPhoneNo()));
 		updateerrorMsgs.setU_errorMsg();
@@ -188,7 +188,7 @@ public class UpdateProfile {
   private String validateupdatecurpassword(String password)
   {
 	  String result="";
-	  if (!stringSize(password,6,10))
+	  if (!stringSize(password,2,10))
 			{result= "Your password must between 6 and 10 digits";}
 	 // else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@._#$%^&+=])$"))
 		//  {result="Your password must atleast contain one 1 uppercase,1 lowercase and 1 special character and 1 number";}
@@ -209,25 +209,26 @@ public class UpdateProfile {
 	  return result;
 	       
   }
-  private String validateupdateconpassword(String password)
-  {
-	  String result="";
-	  UpdateProfile u = new UpdateProfile();
-	  if(!(u.getnewpassword().equals(password)))
-	  {
-		  
-		  result="Please enter the correct new password";
-		  
-		  
-	  }
-	  else
-	  {
-		  result="";
-	  }
-	  
-	  return result;
-	       
-  }
+//  private String validateupdateconpassword(String password)
+//  {
+//	  String result="";
+//	  System.out.println("The PASS PASSED IS " + password);
+//	  UpdateProfileModel u = new UpdateProfileModel();
+//	  if(!(u.getnewpassword().equals(password)))
+//	  {
+//		  
+//		  result="Please enter the correct new password";
+//		  
+//		  
+//	  }
+//	  else
+//	  {
+//		  result="";
+//	  }
+//	  
+//	  return result;
+//	       
+//  }
   
   
 

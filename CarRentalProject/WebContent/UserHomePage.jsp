@@ -25,7 +25,7 @@
 <input type="submit"  name = "submit" value = "logout" />
 </form>
 <br><br><br>
-1.<a href="SearchCar.jsp"> Search car </a> <br>
+1.<a href="searchcarnew.jsp"> Search car </a> <br>
 2.<a href="ViewMyReservation.jsp"> View My Reservation </a> <br>
 3.<a href="CancelReservation.jsp"> Cancel My Reservation </a> <br>
 

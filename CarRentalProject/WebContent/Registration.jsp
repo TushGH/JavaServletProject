@@ -4,10 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="ISO-8859-1">
 <title>Registration</title>
 </head>
 <body>
+<img src="car4.png" alt="car img" height="100" width="100">
 	<input name="errMsg" value="<c:out value='${errorMsgs.errorMsg}'/>"
 		type="text"
 		style="background-color: white; color: red; border: none; width: 800px"
