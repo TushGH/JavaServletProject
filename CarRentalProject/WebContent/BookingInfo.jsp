@@ -5,27 +5,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="test.css" media="screen" />
 <title>BooKing Details</title>
 </head>
 <body>
-<input name="errMsg" value="<c:out value='${errorMsg}'/>"
+<img src="car4.png" alt="car img" height="100" width="100">
+<h1>YOUR RESERVATION IS CONFIRM</h1><br>
+Your Reservation Details are : <br>
+Start date :<input name="errMsg" value="<c:out value='${startdate}'/>"
 		type="text"
-		style="background-color: white; color: red; border: none; width: 800px"
-		disabled="disabled">
+		style="background-color: white;  border: none; width: 800px"
+		disabled="disabled"><br>
+End Date<input name="errMsg" value="<c:out value='${enddate}'/>"
+		type="text"
+		style="background-color: white;  border: none; width: 800px"
+		disabled="disabled"><br>
+Start Time <input name="errMsg" value="<c:out value='${starttime}'/>"
+		type="text"
+		style="background-color: white;  border: none; width: 800px"
+		disabled="disabled"><br>
 		
-		
-<select name="CardName" form="carform" >
-  <option value="volvo">VISA</option>
-  <option value="saab">MASTER CARD</option>
-  <option value="mercedes">AMERICAN EXPRESS</option>
-  <option value="audi">DISCOVER</option>
-</select><br>
-<form action="${pageContext.request.contextPath}/SearchFunction" id="carform" method = "POST">
-VALID THROUGH <input type="text" name="vt"><br>
-CVV NO <input type="text" name="cvv"/>
+End Time<input name="errMsg" value="<c:out value='${endtime}'/>"
+		type="text"
+		style="background-color: white;  border: none; width: 800px"
+		disabled="disabled"><br>
 
-</form>
+Capacity <input name="errMsg" value="<c:out value='${capacity}'/>"
+		type="text"
+		style="background-color: white;  border: none; width: 800px"
+		disabled="disabled"><br>
+CarName<input name="errMsg" value="<c:out value='${CarName}'/>"
+		type="text"
+		style="background-color: white;  border: none; width: 800px"
+		disabled="disabled"><br>
 		
+
+Return To HomePage <a href="UserHomePage.jsp">CLick Here</a>		
 		
 </body>
 </html>

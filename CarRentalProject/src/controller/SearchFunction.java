@@ -74,13 +74,20 @@ public class SearchFunction extends HttpServlet {
 				request.getRequestDispatcher("Display.jsp").forward(request, response);
 				
 			}
-			
+			else{
 			
 			boolean status = aa.bookcar(CarName, Username, starttime, startdate, endtime, enddate);
 			System.out.println(status);
 			System.out.println("going to Booking Info");
-			request.getRequestDispatcher("Display.jsp").forward(request, response);
+			request.setAttribute("startdate", startdate);
+			request.setAttribute("enddate", enddate);
+			request.setAttribute("starttime", starttime);
+			request.setAttribute("endtime", endtime);
+			request.setAttribute("capacity", capacity);
+			request.setAttribute("CarName", CarName);
 			
+			request.getRequestDispatcher("BookingInfo.jsp").forward(request, response);
+			}
 		}
 	}
 

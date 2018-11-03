@@ -28,9 +28,15 @@ Please Choose your car from drop Down List :
     </option>
   </c:forEach>
 </select><br><br>
-PLEASE SELECT YOUR CAR HERE
+<select name="CardName" form="carform" >
+  <option value="volvo">VISA</option>
+  <option value="saab">MASTER CARD</option>
+  <option value="mercedes">AMERICAN EXPRESS</option>
+  <option value="audi">DISCOVER</option>
+</select><br>
 <form action="${pageContext.request.contextPath}/SearchFunction" id="carform" method = "POST">
-
+VALID THROUGH <input type="text" name="vt"><br>
+CVV NO <input type="text" name="cvv"/>
 
 
 <input type = "hidden" name = "startdaten" value="${startdate}" /><br>

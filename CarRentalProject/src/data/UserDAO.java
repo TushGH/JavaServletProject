@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import controller.rentalcontrol;
+import model.ManagerModel;
 import model.user;
 
 
@@ -36,6 +40,8 @@ public class UserDAO {
 		
 		return status ;
 	}
+	
+	
 	
 	public static boolean finduser(String uname)
 	{  String name1;

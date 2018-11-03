@@ -25,7 +25,9 @@ public class transactionDAO {
 				      "jdbc:mysql://localhost:3306/test","root","");  
 			ps=con.prepareStatement(query);
 		 
+			ps.setString(1, uname);
 		    ResultSet rs1 = ps.executeQuery();
+		    rs1.next();
 		    
 		    if(rs1.getString(1).equalsIgnoreCase("YES")){
 		    	status = 1 ;
