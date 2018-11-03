@@ -131,7 +131,7 @@ public void delete(String reservationid) {
 }
 
 public int UpdateManager(String name, String email, String phone, String addr, String newpassword, String username) {
-	// TODO Auto-generated constructor stub
+	
 	int status = 0 ;
 	String role;
 	String query="UPDATE user SET NAME=?,EMAIL=?,PHONE=?,ADDRESS=?,PASSWORD=? WHERE USERNAME=?";

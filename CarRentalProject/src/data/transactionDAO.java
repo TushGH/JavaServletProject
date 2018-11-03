@@ -8,17 +8,41 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javafx.scene.input.Mnemonic;
+import model.ManagerModel;
 
 
 
 public class transactionDAO {
     
 	static PreparedStatement ps;
-	
+	public int isBlackListed(String uname){
+		int status = 0;
+		String query="select BlackListed from test.user where username = ?;";
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection(  
+				      "jdbc:mysql://localhost:3306/test","root","");  
+			ps=con.prepareStatement(query);
+		 
+		    ResultSet rs1 = ps.executeQuery();
+		    
+		    if(rs1.getString(1).equalsIgnoreCase("YES")){
+		    	status = 1 ;
+		    	
+		    }
+		    con.close();
+		    
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return status;
+	}
 	public ArrayList searchcar(String startdate , String enddate , String starttime , String endtime , String capacity){
 	   	 int status = 0 ;
 	   	// String query="select * from reservedcars where startdate>=CAST(? AS DATE) and enddate<=CAST(? as DATE);";
-	   	String query = " select cars.CarName from cars where capacity > ? and cars.CarName NOT IN (select CarName from transaction where startdate >CAST(? as DATE) and enddate < CAST(? as DATE) and starttime >= ? and enddate <= ?) " ;
+	 	String query = " select cars.CarName from cars where capacity > ? and cars.CarName NOT IN (select CarName from test.reservedcars where Startdate >= ? and EndDate <= ? and Starttime >= ? and EndTime <= ?)" ;
 	   		ArrayList<String> mm = null ;
 	   		System.out.println("IN DAO");
 	   		try {
@@ -52,7 +76,7 @@ public class transactionDAO {
 	   	 }
 	
 	public boolean bookcar( String CarName , String Username ,String starttime, String startdate , String endtime ,String enddate){
-		String query="INSERT INTO reservedcars(CarName,Username,Starttime,Startdate,Endtime,EndDate) VALUES(?,?,?,?,?,?)";
+		String query="INSERT INTO reservedcars(CarName,Username,Starttime,Startdate,Endtime,EndDate,Active) VALUES(?,?,?,?,?,?,?)";
 		boolean status  = false ;;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");  
@@ -65,6 +89,7 @@ public class transactionDAO {
 		    ps.setString(4, startdate);
 		    ps.setString(5, endtime);
 		    ps.setString(6, enddate);
+		    ps.setString(7, "YES");
 		    status = ps.execute();
 
 		    con.close();

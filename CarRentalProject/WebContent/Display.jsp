@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<input name="errMsg" value="<c:out value='${errorMsg}'/>"
+		type="text"
+		style="background-color: white; color: red; border: none; width: 800px"
+		disabled="disabled">
 <img src="car4.png" alt="car img" height="100" width="100">
 <link rel="stylesheet" type="text/css" href="test.css" media="screen" />
 <table><tr><td>CAR AVAILABLE </td></tr>
@@ -23,18 +27,10 @@ Please Choose your car from drop Down List :
         ${databaseValue}
     </option>
   </c:forEach>
-</select>
-Enter Your PayMent Details :<br>
- TYPE OF CARD
-<select name="CardName" form="carform" >
-  <option value="volvo">VISA</option>
-  <option value="saab">MASTER CARD</option>
-  <option value="mercedes">AMERICAN EXPRESS</option>
-  <option value="audi">DISCOVER</option>
-</select><br>
+</select><br><br>
+PLEASE SELECT YOUR CAR HERE
 <form action="${pageContext.request.contextPath}/SearchFunction" id="carform" method = "POST">
-VALID THROUGH <input type="text" name="vt"><br>
-CVV NO <input type="text" name="cvv"/>
+
 
 
 <input type = "hidden" name = "startdaten" value="${startdate}" /><br>

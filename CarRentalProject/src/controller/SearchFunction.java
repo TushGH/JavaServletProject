@@ -64,12 +64,22 @@ public class SearchFunction extends HttpServlet {
 			String capacity =request.getParameter("capacityn");
 			String CarName = request.getParameter("database1");
 			String Username = rentalcontrol.g_uname;
-			System.out.println(Username);
+			System.out.println("Global username is "+Username);
 			System.out.println(startdate + " " + enddate + " " + starttime + " " + endtime + " " + capacity + " " + CarName);
 			transactionDAO aa = new transactionDAO();
+			int a = aa.isBlackListed(Username) ;
+			System.out.println("The value og a is " + a );
+			if(a==1){
+				request.setAttribute("errorMsg", "You are blacklisted Please contact admin");
+				request.getRequestDispatcher("Display.jsp").forward(request, response);
+				
+			}
+			
+			
 			boolean status = aa.bookcar(CarName, Username, starttime, startdate, endtime, enddate);
 			System.out.println(status);
-			
+			System.out.println("going to Booking Info");
+			request.getRequestDispatcher("Display.jsp").forward(request, response);
 			
 		}
 	}
