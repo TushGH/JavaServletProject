@@ -1,0 +1,6 @@
+1,ab1,Your username must between 4 and 10 digits
+2,abc1,
+3,abcdabcda1,
+4,abcdabcdabcdabcd,Your username must between 4 and 10 digits
+5,abcdabcdab1,Your username must between 4 and 10 digits
+6,abcd,Your Username must be alphanumeric
