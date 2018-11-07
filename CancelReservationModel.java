@@ -7,9 +7,9 @@ public class CancelReservationModel {
 		return confirmationid;
 	}
 
-	public void setConfirmationid(String confirmationid) {
-		this.confirmationid = confirmationid;
-	}
+	//public void setConfirmationid(String confirmationid) {
+		//this.confirmationid = confirmationid;
+	//}
 	public CancelReservationModel() {
 		super();
 		// TODO Auto-generated constructor stub
