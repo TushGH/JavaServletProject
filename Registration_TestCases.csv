@@ -43,7 +43,7 @@
 43	vkr5530	Johnsmith	MeadowRun	1234567890	TX123467	varun@gmail.com	Abcd123456	1234567890								
 44	vkr5531	Johnsmith	MeadowRun	1234567890	TX123468	varun@gmail.com	Abcd1234567	1234567890							Your password must be between 6 and 10 characters	
 45	vkr5532	Johnsmith	MeadowRun	1234567890	TX123469	varun@gmail.com	Abcd123456789000000000000	1234567890							Your password must be between 6 and 10 characters	
-46	vkr5533	Johnsmith	MeadowRun	1234567890	TX123470	varun@gmail.com	abcd1234	1234567890							"Your password must atleast contain one 1 uppercase,1 lowercase and 1 special character and 1 number"	
+46	vkr5533	Johnsmith	MeadowRun	1234567890	TX123470	varun@gmail.com	abcd1234	1234567890							 Your password must atleast contain one 1 uppercase,1 lowercase and 1 special character and 1 number	
 47	vkr5534	Johnsmith	MeadowRun	1234567890	TX123471	varun@gmail.com	Abcd123									please enter the 10 digit phone number
 48	vkr5535	Johnsmith	MeadowRun	1234567890	TX123472	varun@gmail.com	Abcd124	123456789								please enter the 10 digit phone number
 49	vkr5536	Johnsmith	MeadowRun	1234567890	TX123473	varun@gmail.com	Abcd125	1234567890								
