@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import model.CancelReservationModel;
-
+import data.CancelReservationDAO;
 import model.cancelreservation_errormsgs;
 
 import junitparams.FileParameters;
@@ -29,16 +29,17 @@ public class CancelReservationTest {
 		
 	}
 
-	@FileParameters("src/tests/test11.csv")
+	@FileParameters("src/tests/CancelReservation_TestCases.csv")
 	@Test
-	public void test(int testCaseNumber, String confirmationid, String confirmationidError) {
+	public void test(int testCaseNumber, String confirmationid, String errorMsg ,String confirmationidError) {
 
 		cancel.setCancelReservationModel(confirmationid);
 		//validate
 		cancel.validateCancelReservationModel(cancel, cErrorMsgs);
-
+		
+		assertEquals(errorMsg,cErrorMsgs.getC_errorMsg());
 		assertEquals(confirmationidError,cErrorMsgs.getC_confirmationidError());
-	
+		
 	    	    
 	}
 }
