@@ -118,6 +118,7 @@ public class rentalcontrol extends HttpServlet {
 		    newuser.setPhoneNo(request.getParameter("phno"));
 		    newuser.setUTAID(request.getParameter("uta_id"));
 		    newuser.setAutoClub(request.getParameter("auto_club"));
+		    newuser.setAge(request.getParameter("age"));
 		    
 
 		    UserErrormsgs u = new UserErrormsgs();

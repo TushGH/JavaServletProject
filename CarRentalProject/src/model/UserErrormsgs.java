@@ -9,6 +9,13 @@ public class UserErrormsgs {
 		private String firstNameError;
 		//private String AddressError;
 		private String utaidError; 
+		private String ageError;
+
+
+
+
+
+
 		
 
 
@@ -176,6 +183,18 @@ public class UserErrormsgs {
 			this.licenseError = licenseError;
 		}
 
+		public String getAgeError() {
+			return ageError;
+		}
+
+
+
+
+
+
+		public void setAgeError(String ageError) {
+			this.ageError = ageError;
+		}
 		
 
 	

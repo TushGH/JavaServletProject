@@ -134,7 +134,7 @@ public class UserDAO {
 		
 	return status ;
 	}
-	public user getUserInfo(String username){
+	public  user getUserInfo(String username){
 		user ns = new user();
 		System.out.println("getting user info ");
 		String query = "select * from user where username = ?";
@@ -158,7 +158,7 @@ public class UserDAO {
   //         ns.setLicence(rs.getString(""));
 	//		 ns.setDOB(rs.getString("));
            ns.setFullName(rs.getString("name"));
-			
+			ns.setAge(rs.getString("Age"));
 		}
 		catch(Exception e)
 		{
@@ -180,7 +180,7 @@ public class UserDAO {
 		"jdbc:mysql://localhost:3306/test","root","");
 		
 			
-			 ps=con.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?,?)");
+			 ps=con.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?,?,?)");
 			 System.out.println(newuser.getUsername());
 			 System.out.println(newuser.getPassword());
 			 System.out.println(newuser.getFullName());
@@ -191,6 +191,7 @@ public class UserDAO {
 			 System.out.println(newuser.getEmail());
 			 System.out.println(newuser.getPhoneNo());
 			 System.out.println(newuser.getAutoClub());
+			 System.out.println(newuser.getAge());
 		     ps.setString(1,newuser.getUsername());
 		     ps.setString(2, newuser.getRole());
 		     ps.setString(3,newuser.getFullName());
@@ -201,7 +202,7 @@ public class UserDAO {
 		     ps.setString(8, newuser.getPassword());
 		     ps.setString(9, "NO");
 		     ps.setString(10, newuser.getAutoClub());
-
+             ps.setString(11, newuser.getAge());
 		     status=ps.executeUpdate();
 		     con.close();
 		}

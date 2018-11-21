@@ -96,8 +96,12 @@ public void validateAddCarModel(AddCarModel addcar, addcar_errormsgs addcarerror
 	
 	private String validatecarname(String CarName) {
 		String result="";
+         if(CarName.isEmpty())
+         {
+        	 result="Car Name can not be empty";
 
-		if (!stringSize(CarName,4,15))
+         }
+         else if (!stringSize(CarName,4,15))
 			result= "Your CarName must between 4 and 15 digits";
 		else{
 			
@@ -107,9 +111,13 @@ public void validateAddCarModel(AddCarModel addcar, addcar_errormsgs addcarerror
 	}
 	private String validatecapacity(String Capacity) {
 		String result="";
-		if(!isTextAnInteger(Capacity))
+		if(Capacity.isEmpty())
 		{
-			result="you just have to enter numbers";
+			result="Capacity can not be empty";
+		}
+		else if(!isTextAnInteger(Capacity))
+		{
+			result="You just have to enter numbers";
 			
 		}
 		else
@@ -118,9 +126,16 @@ public void validateAddCarModel(AddCarModel addcar, addcar_errormsgs addcarerror
 	}
 	private String validateweekday(String WeekDay) {
 		String result="";
-		if(!isTextAnInteger(WeekDay))
+		
+	
+		if(WeekDay.isEmpty())
 		{
-			result="you just have to enter numbers";
+			result="Weekday can not be empty";
+		}
+		
+		else if(!isTextAnInteger(WeekDay))
+		{
+			result="You just have to enter numbers";
 			
 		}
 		else
@@ -130,9 +145,15 @@ public void validateAddCarModel(AddCarModel addcar, addcar_errormsgs addcarerror
 
 	private String validateweekend(String WeekEnd) {
 		String result="";
-		if(!isTextAnInteger(WeekEnd))
+
+		if(WeekEnd.isEmpty())
 		{
-			result="you just have to enter numbers";
+			result="weekend rate can not be empty";
+		}
+		
+		else if(!isTextAnInteger(WeekEnd))
+		{
+			result="You just have to enter numbers";
 		
 		}
 		else
@@ -143,9 +164,14 @@ public void validateAddCarModel(AddCarModel addcar, addcar_errormsgs addcarerror
 
 	private String validateweek(String Week) {
 		String result="";
-		if(!isTextAnInteger(Week))
+		if(Week.isEmpty())
 		{
-			result="you just have to enter numbers";
+			result="week can not be empty";
+		}
+		
+		else if(!isTextAnInteger(Week))
+		{
+			result="You just have to enter numbers";
 			
 		}
 		else{
@@ -155,9 +181,13 @@ public void validateAddCarModel(AddCarModel addcar, addcar_errormsgs addcarerror
 	
 	private String validategps(String Gps) {
 		String result="";
-		if(!isTextAnInteger(Gps))
+		if(Gps.isEmpty())
 		{
-			result="you just have to enter numbers";
+			result="GPS can not be empty";
+		}
+		else if(!isTextAnInteger(Gps))
+		{
+			result="You just have to enter numbers";
 			
 		}
 		else
@@ -167,9 +197,13 @@ public void validateAddCarModel(AddCarModel addcar, addcar_errormsgs addcarerror
 	
 	private String validateonstar(String OnStar) {
 		String result="";
-		if(!isTextAnInteger(OnStar))
+		if(OnStar.isEmpty())
 		{
-			result="you just have to enter numbers";
+			result="Onstar can not be empty";
+		}
+		else if(!isTextAnInteger(OnStar))
+		{
+			result="You just have to enter numbers";
 			
 		}
 		else{
@@ -178,9 +212,14 @@ public void validateAddCarModel(AddCarModel addcar, addcar_errormsgs addcarerror
 	} 
 	private String validatesiriusxm(String siriusxm) {
 		String result="";
-		if(!isTextAnInteger(siriusxm))
+		if(siriusxm.isEmpty())
 		{
-			result="you just have to enter numbers";
+			result="SiriusXM can not be empty";
+		}
+		
+		else if(!isTextAnInteger(siriusxm))
+		{
+			result="You just have to enter numbers";
 		
 		}
 		else

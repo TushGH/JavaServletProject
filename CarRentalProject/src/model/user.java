@@ -14,6 +14,15 @@ public class user {
 	private String Address ;
 	private String UTAID ;
 	private String AutoClub ;
+	private String Age;
+
+	public String getAge() {
+		return Age;
+	}
+
+	public void setAge(String age) {
+		Age = age;
+	}
 
 	public String getUsername() {
 		return Username;
@@ -132,19 +141,18 @@ public class user {
 		errorMsgs.setPasswordError(validatepassword(user.getPassword()));
 		errorMsgs.setEmailError(validateemail(user.getEmail()));
 		errorMsgs.setPhonenoError(validatephoneno(user.getPhoneNo()));
+		errorMsgs.setAgeError(validateAge(user.getAge()));
 		errorMsgs.setErrorMsg();
 	}
 	
-	private String validateusername (String Username) {
+	public String validateusername (String Username) {
 		String result="";
 		user u=new user();
 		UserDAO us = new UserDAO();
 		String pswd=u.getPassword();
 		if (!stringSize(Username,4,10))
 			result= "Your username must between 4 and 10 digits";
-		else
-			if (!isAlphanumeric(Username))
-				result="Your Username must be alphanumeric";
+		
 			
 			else
 			   if (!us.finduser(Username))
@@ -153,18 +161,35 @@ public class user {
 				   result="";
 		return result;				
 	}
-	private boolean isAlphanumeric(String username2) {
-		// TODO Auto-generated method stub
-		boolean s1;
-		s1=username2.matches("[a-zA-Z0-9]+");
-		
-		return s1;
+	
+	public String validateAge(String age)
+	{
+		String result="";
+		if(age.isEmpty())
+		{
+			result="the age cannot be empty";
+		}
+		else if(!isTextAnInteger(UTAID))
+		{
+			result="the age must be a number and an integer";
+		}
+		else if(!stringSize(age,1,3))
+		{
+			result="age must be between 1 and 3 characters";
+			
+		}
+		else
+		{
+			result="";
+		}
+	return result;
 	}
+	
 
-	private String validateFirstName (String fullName) {
+	public String validateFirstName (String fullName) {
 		String result="";
 		if (!stringSize(fullName,1,20))
-			result= "Your Full Name must between 1 and 20 digits";
+			result= "Your Full Name must between 1 and 20 characters";
 		else
 			if (Character.isLowerCase(fullName.charAt(0)))
 				result="Your First Name must start with a capital letter";
@@ -173,18 +198,18 @@ public class user {
 		return result;
 	}
 	
-	private String validateAddress (String Address) {
+	public String validateAddress (String Address) {
 		String result="";
-		if (!stringSize(Address,1,100))
-			{result= "Your Address must between 1 and 45 digits";}
+		if (!stringSize(Address,1,10))
+			{result= "Your Address must between 1 and 10 characters";}
 		else if (Character.isLowerCase(Address.charAt(0)))
 				{result="Your Address must start with a capital letter";}
 		else
-			result="";
+			{result="";}
 		return result;
 	}
 
-	private String validateUtaId (String UTAID) {
+	public String validateUtaId (String UTAID) {
 		String result="";
 		if (UTAID.length()!=10)
 			{result= "Your UTA ID must be 10 digits";}
@@ -195,12 +220,12 @@ public class user {
 				{result="";}
 		return result;
 	}
-	private String validateemail(String email)
+	public String validateemail(String email)
 	{
 		String result="";
 		if(!stringSize(email,8,40))
 		{
-			result="";
+			result="Your email must be between 12 and 40 characters";
 		}
 		else if(!email.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.com|.net|.org|.mil|.gov|.edu)$"))
 		{
@@ -211,7 +236,7 @@ public class user {
 			result="";
 		return result;
  	}
-	private String validatephoneno(String phoneno)
+	public String validatephoneno(String phoneno)
 	{   String result="";
 		if(phoneno.length()!=10)
 		{
@@ -228,10 +253,10 @@ public class user {
 	}
 	
 	
-	private boolean stringSize(String string, int min, int max) {
+	public boolean stringSize(String string, int min, int max) {
 		return string.length()>=min && string.length()<=max;
 	}
-	private boolean isTextAnInteger (String string) {
+	public boolean isTextAnInteger (String string) {
         boolean result;
 		try
         {
@@ -245,13 +270,13 @@ public class user {
 		return result;
 	}
 	
-  private String validatelicense(String license)
+  public String validatelicense(String license)
   {  String result="";
 	  if (license.length()!=8)
-			result= "Your license must between 4 and 10 digits";
-		else
-			if (!isAlphanumeric(license))
-				result="Your license must be alphanumeric";
+			result= "Your license must be 8 digits";
+		//else
+			//if (!isAlphanumeric(license))
+				//result="Your license must be alphanumeric";
 	  
 			   else
 				   result="";
@@ -261,11 +286,11 @@ public class user {
 	  
   }
   
-  private String validatepassword(String password)
+  public String validatepassword(String password)
   {
 	  String result="";
 	  if (!stringSize(password,6,10))
-			{result= "Your password must atleast contain one 1 uppercase,1 lowercase  and 1 number";}
+			{result= "Your password must atleast contain one 1 uppercase,1 lowercase and 1 number";}
 	  //else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])$"))
 		// {result="Your password must atleast contain one 1 uppercase,1 lowercase and 1 special character and 1 number";}
 	  else 
@@ -307,7 +332,7 @@ public class user {
 	  UserDAO usi = new UserDAO();
 	 if(password.isEmpty())
 	 {
-		 result="You cant leave the password empty";
+		 result="You cant leave password empty";
 	 }
   
 	 //else if(!usi.finduser(uname))
@@ -316,13 +341,7 @@ public class user {
 		 result="Please Enter the correct password";
 		 
 	 }
-	// { 
-//		 if(!usi.findmatchpassword(uname,password).equals(password))
-//		 {
-//			 result="Password entered is wrong.Please enter correct password for that user";
-//		 }
-		 
-  //  }
+	
   
 	 else
 	 { result="";}

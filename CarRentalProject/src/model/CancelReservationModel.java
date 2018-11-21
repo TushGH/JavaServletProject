@@ -7,19 +7,18 @@ public class CancelReservationModel {
 		return confirmationid;
 	}
 
-	public void setConfirmationid(String confirmationid) {
-		this.confirmationid = confirmationid;
-	}
+	//public void setConfirmationid(String confirmationid) {
+		//this.confirmationid = confirmationid;
+	//}
 	public CancelReservationModel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public CancelReservationModel(String confirmationid) {
-		super();
-		this.confirmationid=confirmationid;
+	public void setCancelReservationModel(String confirmationid) {
+		
+		this.confirmationid= confirmationid;
 	}
-	 public void validateCancelReservationModel(CancelReservationModel cancel, cancelreservation_errormsgs cancelerrorMsgs) {
+	public void validateCancelReservationModel(CancelReservationModel cancel, cancelreservation_errormsgs cancelerrorMsgs) {
 		 cancelerrorMsgs.setC_confirmationidError(validateconfirmationid(cancel.getConfirmationid()));
 		 cancelerrorMsgs.setC_errorMsg();
 	 }

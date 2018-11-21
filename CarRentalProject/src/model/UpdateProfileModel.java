@@ -1,23 +1,23 @@
 package model;
 
 public class UpdateProfileModel {
-	private String Username ;
+	//private String Username ;
 	private String curpassword ;
 	private String newpassword ;
-	private String conpassword ;
+	//private String conpassword ;
 	private String fullName ;
 	private String email ;
 	private String PhoneNo ;
 	private String addr ;
-	
 
-	public String getUsername() {
-		return Username;
-	}
-
-	public void setUsername(String username) {
-		Username = username;
-	}
+//
+//	public String getUsername() {
+//		return Username;
+//	}
+//
+//	public void setUsername(String username) {
+//		Username = username;
+//	}
 
 	public String getcurpassword() {
 		return curpassword;
@@ -35,13 +35,13 @@ public class UpdateProfileModel {
 		this.newpassword = newpassword;
 	}
 	
-	public String getconpassword() {
-		return conpassword;
-	}
-
-	public void setconpassword(String conpassword) {
-		this.conpassword = conpassword;
-	}
+//	public String getconpassword() {
+//		return conpassword;
+//	}
+//
+//	public void setconpassword(String conpassword) {
+//		this.conpassword = conpassword;
+//	}
 
 	public String getFullName() {
 		return fullName;
@@ -77,10 +77,10 @@ public class UpdateProfileModel {
 	public UpdateProfileModel(String username, String fullName, String email, String phoneNo, String addr,
 			String curpassword, String newpassword, String conpassword) {
 		super();
-		Username = username;
+		//Username = username;
 		this.curpassword = curpassword;
 		this.newpassword = newpassword;
-		this.conpassword = conpassword;
+		//this.conpassword = conpassword;
 		this.fullName = fullName;
 		this.email = email;
 		PhoneNo = phoneNo;
@@ -103,13 +103,13 @@ public class UpdateProfileModel {
 		updateerrorMsgs.setU_phonenoError(validateupdatephoneno(update.getPhoneNo()));
 		updateerrorMsgs.setU_errorMsg();
 	}
-	private boolean isAlphanumeric(String username2) {
-		// TODO Auto-generated method stub
-		boolean s1;
-		s1=username2.matches("[a-zA-Z0-9]+");
-		
-		return s1;
-	}
+//	private boolean isAlphanumeric(String username2) {
+//		// TODO Auto-generated method stub
+//		boolean s1;
+//		s1=username2.matches("[a-zA-Z0-9]+");
+//		
+//		return s1;
+//	}
 
 	private String validateupdatename (String fullName) {
 		String result="";
@@ -125,8 +125,8 @@ public class UpdateProfileModel {
 	
 	private String validateupdateaddress (String Address) {
 		String result="";
-		if (!stringSize(Address,1,100))
-			{result= "Your Address must between 1 and 45 digits";}
+		if (!stringSize(Address,1,10))
+			{result= "Your Address must between 1 and 100 Characters";}
 		else if (Character.isLowerCase(Address.charAt(0)))
 				{result="Your Address must start with a capital letter";}
 		else
@@ -137,9 +137,9 @@ public class UpdateProfileModel {
 	private String validateupdateemail(String email)
 	{
 		String result="";
-		if(!stringSize(email,8,40))
+		if(!stringSize(email,12,40))
 		{
-			result="";
+			result="Your email must be between 12 and 40 characters";
 		}
 		else if(!email.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(.com|.net|.org|.mil|.gov|.edu)$"))
 		{
@@ -188,7 +188,7 @@ public class UpdateProfileModel {
   private String validateupdatecurpassword(String password)
   {
 	  String result="";
-	  if (!stringSize(password,2,10))
+	  if (!stringSize(password,6,10))
 			{result= "Your password must between 6 and 10 digits";}
 	 // else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@._#$%^&+=])$"))
 		//  {result="Your password must atleast contain one 1 uppercase,1 lowercase and 1 special character and 1 number";}

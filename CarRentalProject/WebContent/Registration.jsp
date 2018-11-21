@@ -73,6 +73,15 @@
 								style="background-color: white; color: red; border: none; width: 800px"
 								disabled="disabled"></td>
 						</tr>
+						<tr>
+							<td>Age</td>
+							<td><input type="age" name="age" /></td>
+							<td><input name="ageError"
+								value="<c:out value='${errorMsgs.ageError}'/>" type="text"
+								style="background-color: white; color: red; border: none; width: 800px"
+								disabled="disabled"></td>
+						</tr>
+						
 
 						<tr>
 							<td>Phone Number:</td>
