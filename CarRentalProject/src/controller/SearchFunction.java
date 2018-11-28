@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -24,6 +26,7 @@ public class SearchFunction extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+	
     public SearchFunction() {
         super();
         // TODO Auto-generated constructor stub
@@ -85,6 +88,19 @@ public class SearchFunction extends HttpServlet {
 			request.setAttribute("endtime", endtime);
 			request.setAttribute("capacity", capacity);
 			request.setAttribute("CarName", CarName);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			
+			java.util.Date date1 = null;
+			java.util.Date date2 = null;
+			try {
+				date1 = format.parse ( startdate );
+				date2 = format.parse ( enddate );
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			double price = aa.calPrice(date1, date2,CarName);
+			request.setAttribute("price", price);
 			
 			request.getRequestDispatcher("BookingInfo.jsp").forward(request, response);
 			}

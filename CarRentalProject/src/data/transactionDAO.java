@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javafx.scene.input.Mnemonic;
 import model.ManagerModel;
@@ -105,6 +106,72 @@ public class transactionDAO {
 		return status;
 	}
 	
+	public double calPrice(java.util.Date date1 , java.util.Date date2 , String CarName11) {
+		int status = 0;
+		String query="select * from test.cars where CarName = ?;";
+		Calendar startCal = Calendar.getInstance();
+		String weedDP = null ;
+		String weedEP = null ;
+		String week = null ;
+	    startCal.setTime(date1);        
+	    int noOfWeekDay = 0  , noOfWeekEndDays = 0 ;
+	    Calendar endCal = Calendar.getInstance();
+	    endCal.setTime(date2);
+	    
+	    try {
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection con=DriverManager.getConnection(  
+				      "jdbc:mysql://localhost:3306/test","root","");  
+			PreparedStatement ps;
+			ps=con.prepareStatement(query);
+			ps.setString(1, CarName11);
+		    ResultSet rs1 = ps.executeQuery();
+		    while (rs1.next()) {
+		    	weedDP = rs1.getString("Weekday");
+		    	weedEP = rs1.getString("Weekend");
+		    	week = rs1.getString("Week");
+		    	
+		    }
+		    con.close();
+		    
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	    System.out.println(weedDP + " " + weedEP + " " + week );
+	    int diffInDays = (int)( (date2.getTime() - date1.getTime()) 
+                / (1000 * 60 * 60 * 24) );
+		
+	    System.out.println("Total No of days  between " + diffInDays);
+	    int noofWeeks = diffInDays/7 ;
+		
+		
+		startCal.add(Calendar.DATE, 7 * noofWeeks);
+		
+		do {
+			 
+		        if (startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY && startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+		            ++noOfWeekDay;
+		        }
+		        else
+		        {
+		        	++noOfWeekEndDays;
+		        }
+			
+		        startCal.add(Calendar.DATE, 1);
+		}while(startCal.getTimeInMillis() <= endCal.getTimeInMillis());
+		
+		System.out.println("Number of days Week " + noOfWeekDay );
+		System.out.println("Number of days WeekEnd " + noOfWeekEndDays );
+		System.out.println("no of weeks is " + noofWeeks);
+		
+		double wd = Double.parseDouble(weedDP);
+		double we = Double.parseDouble(weedEP);
+		double wee = Double.parseDouble(week);
+		
+		double grandPrice = noOfWeekDay * wd + noOfWeekEndDays * we + noofWeeks * wee ;
+		
+		return grandPrice ;
+	}
 	
 
 }
