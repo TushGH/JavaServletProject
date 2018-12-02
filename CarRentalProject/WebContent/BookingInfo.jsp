@@ -39,7 +39,7 @@ CarName<input name="errMsg" value="<c:out value='${CarName}'/>"
 		style="background-color: white;  border: none; width: 800px"
 		disabled="disabled"><br>
 		
-Total Price Charged <input name="errMsg" value="<c:out value='${price}'/>"
+Total Price Charged $<input name="errMsg" value="<c:out value='${price}'/>"
 		type="text"
 		style="background-color: white;  border: none; width: 800px"
 		disabled="disabled"><br>

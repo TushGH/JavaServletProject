@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import data.transactionDAO;
+import model.PaymentModel;
 import model.SearchCar_errormsgs;
 import model.Searchcar;
+import model.payment_errormsgs;
 
 
 
@@ -40,14 +42,14 @@ public class SearchFunction extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sub=request.getParameter("submit");
-		System.out.println(sub);
+		//System.out.println(sub);
 		if(sub.equalsIgnoreCase("Search")){
 			String startdate = request.getParameter("startdate");
 			String enddate = request.getParameter("enddate");
 			String starttime = request.getParameter("starttime");
 			String endtime =request.getParameter("endtime");
 			String capacity =request.getParameter("capacity");
-			System.out.println(startdate + " " + enddate + " " + starttime + " " + endtime + " " + capacity);
+			///System.out.println(startdate + " " + enddate + " " + starttime + " " + endtime + " " + capacity);
 			Searchcar sc = new Searchcar(startdate, enddate, starttime, endtime, capacity);
 			SearchCar_errormsgs scerror = new SearchCar_errormsgs();
 			try{
@@ -56,7 +58,7 @@ public class SearchFunction extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("the errormsgs we get here is "+scerror.getS_errorMsg());
+			//System.out.println("the errormsgs we get here is "+scerror.getS_errorMsg());
 			
 			if(scerror.getS_errorMsg().equals(""))
 			{
@@ -93,15 +95,40 @@ public class SearchFunction extends HttpServlet {
 			transactionDAO aa = new transactionDAO();
 			int a = aa.isBlackListed(Username) ;
 			System.out.println("The value og a is " + a );
-			if(a==1){
+			String gps = request.getParameter("GPS");
+			String onstar = request.getParameter("OnStar");
+			String siriusXm = request.getParameter("siriusXm");
+			
+			int gp = 1 ; int os = 1 ; int sX = 1 ;
+			if(gps == null) gp = 0 ;
+			if(onstar == null) os = 0 ;
+			if(siriusXm == null) sX = 0 ;
+			String CardType = request.getParameter("CardName");
+			String CardNo = request.getParameter("cardno");
+			String CardValid = request.getParameter("vt");
+			String CardCVV = request.getParameter("cvv");
+			PaymentModel payModel = new PaymentModel(CardType, CardNo, CardValid, CardCVV);
+			payment_errormsgs payerr = new payment_errormsgs();
+			payModel.validatePaymentModel(payModel, payerr);
+			System.out.println("The message you get is **" + payerr.getP_errorMsg()+"**");
+			if(!payerr.getP_errorMsg().equals("")){
+				System.out.println("The message you get is **" + payerr.getP_errorMsg()+"**");
+				request.setAttribute("errorMsg", "Please correct the following errors");
+				request.setAttribute("emsgs", payerr);
+				request.getRequestDispatcher("Display.jsp").forward(request, response);
+					
+			}
+			else if(a==1){
 				request.setAttribute("errorMsg", "You are blacklisted Please contact admin");
 				request.getRequestDispatcher("Display.jsp").forward(request, response);
 				
 			}
+			
 			else{
 			
 			boolean status = aa.bookcar(CarName, Username, starttime, startdate, endtime, enddate);
 			System.out.println(status);
+			double price = 0 ;
 			System.out.println("going to Booking Info");
 			request.setAttribute("startdate", startdate);
 			request.setAttribute("enddate", enddate);
@@ -109,7 +136,13 @@ public class SearchFunction extends HttpServlet {
 			request.setAttribute("endtime", endtime);
 			request.setAttribute("capacity", capacity);
 			request.setAttribute("CarName", CarName);
-			
+			try {
+			  price = aa.calPrice(startdate, enddate, CarName , gp , os , sX);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("price", price);
 			request.getRequestDispatcher("BookingInfo.jsp").forward(request, response);
 			}
 		}

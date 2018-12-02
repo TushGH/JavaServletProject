@@ -35,8 +35,27 @@ Please Choose your car from drop Down List :
   <option value="audi">DISCOVER</option>
 </select><br>
 <form action="${pageContext.request.contextPath}/SearchFunction" id="carform" method = "POST">
-VALID THROUGH <input type="text" name="vt"><br>
-CVV NO <input type="text" name="cvv"/>
+Select the additional features <br>
+<input type="checkbox" name="GPS" value="1"> GPS
+
+<input type="checkbox" name="OnStar" value="1"> OnStar
+
+<input type="checkbox" name="siriusXm" value="1" > siriusXm <br><br><br>
+
+Card No <input type="text" name="cardno" >
+<input name="usernameError"
+								value="<c:out value='${emsgs.p_cardnoError}'/>" type="text"
+								style="background-color: white; color: red; border: none; width: 800px"
+								disabled="disabled"><br>
+VALID THROUGH <input type="text" name="vt" >
+<input name="usernameError"
+								value="<c:out value='${emsgs.p_expirationdateError}'/>" type="text"
+								style="background-color: white; color: red; border: none; width: 800px"
+								disabled="disabled"><br>
+CVV NO <input type="text" name="cvv"/><input name="usernameError"
+								value="<c:out value='${emsgs.p_cvvnoError}'/>" type="text"
+								style="background-color: white; color: red; border: none; width: 800px"
+								disabled="disabled"><br>
 
 
 <input type = "hidden" name = "startdaten" value="${startdate}" /><br>

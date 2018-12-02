@@ -151,13 +151,18 @@ public class transactionDAO {
 		return status;
 	}
 	
-	public double calPrice(java.util.Date date1 , java.util.Date date2 , String CarName11) {
-		int status = 0;
+	public double calPrice(String startDate , String EndDate , String CarName11 , int gps , int onStar , int siriusXm) throws ParseException {
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date date1= sd.parse(startDate);
+		java.util.Date date2= sd.parse(EndDate);
 		String query="select * from test.cars where CarName = ?;";
 		Calendar startCal = Calendar.getInstance();
 		String weedDP = null ;
 		String weedEP = null ;
 		String week = null ;
+		String gpsp = null ;
+		String onstarp = null ;
+		String sirisuXmp = null ;
 	    startCal.setTime(date1);        
 	    int noOfWeekDay = 0  , noOfWeekEndDays = 0 ;
 	    Calendar endCal = Calendar.getInstance();
@@ -175,6 +180,9 @@ public class transactionDAO {
 		    	weedDP = rs1.getString("Weekday");
 		    	weedEP = rs1.getString("Weekend");
 		    	week = rs1.getString("Week");
+		    	gpsp = rs1.getString("GPS");
+		    	onstarp = rs1.getString("OnStar");
+		    	sirisuXmp = rs1.getString("SiriusXm");
 		    	
 		    }
 		    con.close();
@@ -186,7 +194,7 @@ public class transactionDAO {
 	    int diffInDays = (int)( (date2.getTime() - date1.getTime()) 
                 / (1000 * 60 * 60 * 24) );
 		
-	    System.out.println("Total No of days  between " + diffInDays);
+	   
 	    int noofWeeks = diffInDays/7 ;
 		
 		
@@ -205,15 +213,15 @@ public class transactionDAO {
 		        startCal.add(Calendar.DATE, 1);
 		}while(startCal.getTimeInMillis() <= endCal.getTimeInMillis());
 		
-		System.out.println("Number of days Week " + noOfWeekDay );
-		System.out.println("Number of days WeekEnd " + noOfWeekEndDays );
-		System.out.println("no of weeks is " + noofWeeks);
 		
 		double wd = Double.parseDouble(weedDP);
 		double we = Double.parseDouble(weedEP);
 		double wee = Double.parseDouble(week);
+		double gpspp = Double.parseDouble(gpsp);
+		double onstarpp = Double.parseDouble(onstarp);
+		double siriusXmpp = Double.parseDouble(sirisuXmp);
 		
-		double grandPrice = noOfWeekDay * wd + noOfWeekEndDays * we + noofWeeks * wee ;
+		double grandPrice = noOfWeekDay * wd + noOfWeekEndDays * we + noofWeeks * wee + gpspp * gps + onstarpp * onStar + siriusXmpp * siriusXm  ;
 		
 		return grandPrice ;
 	}
