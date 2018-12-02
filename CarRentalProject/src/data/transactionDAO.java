@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -41,6 +43,48 @@ public class transactionDAO {
 		}
 		
 		return status;
+	}
+	
+	public int searchdates(String startdate,String enddate) throws ParseException 
+	{
+		int b=0;
+		System.out.println("The input date is " + startdate );
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date d1= sd.parse(startdate);
+		java.util.Date d2= sd.parse(enddate);
+//		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+//		java.util.Date d3= sd.parse(sttime);
+//		java.util.Date d4= sd.parse(endtime);
+		int compare = d2.compareTo(d1);
+		System.out.println("The value of compare is " + compare);
+		 if (compare == 1){
+			b = 1 ;
+		}
+		else if(compare == 0){
+			b = 1 ;
+		}
+		return b;
+	}
+	
+	public int searchtime(String stdate,String enddate,String sttime,String endtime) throws ParseException 
+	{
+	int b=0;
+	System.out.println("The input date is " + stdate );
+	SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+	java.util.Date d1= sd.parse(stdate);
+	java.util.Date d2= sd.parse(enddate);
+//	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+//	java.util.Date d3= sd.parse(sttime);
+//	java.util.Date d4= sd.parse(endtime);
+	int compare = d2.compareTo(d1);
+	System.out.println("The value of compare is " + compare);
+	 if (compare == 1){
+		b = 1 ;
+	}
+	else if(compare == 0){
+		b = 1 ;
+	}
+	return b;
 	}
 	public ArrayList searchcar(String startdate , String enddate , String starttime , String endtime , String capacity){
 	   	 int status = 0 ;
@@ -85,6 +129,7 @@ public class transactionDAO {
 			Class.forName("com.mysql.jdbc.Driver");  
 			Connection con=DriverManager.getConnection(  
 				      "jdbc:mysql://localhost:3306/test","root","");  
+			System.out.println("The Car Name Inserted is " + CarName);
 			ps=con.prepareStatement(query);
 		    ps.setString(1, CarName);
 		    ps.setString(2, Username);

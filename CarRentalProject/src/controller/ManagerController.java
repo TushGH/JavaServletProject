@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mysql.fabric.xmlrpc.base.Array;
+
 
 import data.ManagerDAO;
 import model.AddCarModel;
 import model.ManagerModel;
+import model.UpdateProfileModel;
 import model.addcar_errormsgs;
+import model.update_errormsgs;
 
 
 /**
@@ -87,11 +89,37 @@ public class ManagerController extends HttpServlet {
 					String curpassword=request.getParameter("curpassword");
 					String newpassword=request.getParameter("newpassword");
 					String conpassword=request.getParameter("conpassword");
+					//System.out.println(username + " " + email + " " + phone + " addr" + " " + curpassword + " " + conpassword);
+					//ManagerDAO update=new ManagerDAO();
+					//update.UpdateManager(name, email, phone, addr, newpassword, username);
+					//request.setAttribute("Message", "Profile Updates");
+					//request.getRequestDispatcher("ManagerHomePage.jsp").forward(request, response);
+					UpdateProfileModel upm = new UpdateProfileModel(username, name, email, phone, addr, curpassword, newpassword, conpassword);
+					System.out.println("**** IN MANAGER CONTROLLER ****");
+					update_errormsgs uperr = new update_errormsgs();
+					upm.validateUpdateProfile(upm, uperr);
+					if(uperr.getU_errorMsg().equals("")){
+						System.out.println("*** ERROR MSG NO MESSAGE "+uperr.getU_nameError());
+						
 					System.out.println(username + " " + email + " " + phone + " addr" + " " + curpassword + " " + conpassword);
 					ManagerDAO update=new ManagerDAO();
 					update.UpdateManager(name, email, phone, addr, newpassword, username);
 					request.setAttribute("Message", "Profile Updates");
-					request.getRequestDispatcher("ManagerHomePage.jsp").forward(request, response);
+					request.getRequestDispatcher("UserHomePage.jsp").forward(request, response);
+					}
+					else{
+						System.out.println("*** ERROR MSG "+uperr.getU_nameError());
+						request.setAttribute("uname", username);
+						request.setAttribute("fname", name);
+						request.setAttribute("email1", email);
+						request.setAttribute("fno", phone);
+						request.setAttribute("add", addr);
+						request.setAttribute("emsgs", uperr);
+						System.out.println("the error msg in current password is"+uperr.getU_conpasswordError());
+						
+						request.getRequestDispatcher("UpdateProfile.jsp").forward(request, response);
+						
+					}
 					
 				}
 				
@@ -170,9 +198,9 @@ public class ManagerController extends HttpServlet {
 						String email=request.getParameter("email");
 						String phone=request.getParameter("phone");
 						String addr=request.getParameter("addr");
-						String curpassword=request.getParameter("curpassword");
+					//	String curpassword=request.getParameter("curpassword");
 						String newpassword=request.getParameter("newpassword");
-						String conpassword=request.getParameter("conpassword");
+					//	String conpassword11=request.getParameter("conpassword");
 						//System.out.println(session.getAttribute("username"));
 						ManagerDAO update=new ManagerDAO();
 						update.UpdateManager(name, email, phone, addr, newpassword, username);

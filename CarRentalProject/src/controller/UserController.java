@@ -17,6 +17,8 @@ import data.UpdateDao;
 import data.UserDAO;
 
 import model.ManagerModel;
+import model.UpdateProfileModel;
+import model.update_errormsgs;
 import model.user;
 
 /**
@@ -56,13 +58,41 @@ public class UserController extends HttpServlet {
 			String curpassword=request.getParameter("curpassword");
 			String newpassword=request.getParameter("newpassword");
 			String conpassword=request.getParameter("conpassword");
+			UpdateProfileModel upm = new UpdateProfileModel(username, name, email, phone, addr, curpassword, newpassword, conpassword);
+			System.out.println("**** IN ADMIN CONTROLLER ****");
+			update_errormsgs uperr = new update_errormsgs();
+			upm.validateUpdateProfile(upm, uperr);
+			if(uperr.getU_errorMsg().equals("")){
+				System.out.println("*** ERROR MSG NO MESSAGE "+uperr.getU_nameError());
+				
 			System.out.println(username + " " + email + " " + phone + " addr" + " " + curpassword + " " + conpassword);
 			ManagerDAO update=new ManagerDAO();
 			update.UpdateManager(name, email, phone, addr, newpassword, username);
-			request.setAttribute("Message", "PROFILE UPDATED SUCCESSFULLY !!!");
+			request.setAttribute("Message", "Profile Updates");
 			request.getRequestDispatcher("UserHomePage.jsp").forward(request, response);
+			}
+			else{
+				System.out.println("*** ERROR MSG "+uperr.getU_nameError());
+				request.setAttribute("uname", username);
+				request.setAttribute("fname", name);
+				request.setAttribute("email1", email);
+				request.setAttribute("fno", phone);
+				request.setAttribute("add", addr);
+				request.setAttribute("emsgs", uperr);
+				System.out.println("the error msg in current password is"+uperr.getU_conpasswordError());
+				
+				request.getRequestDispatcher("UpdateProfile2.jsp").forward(request, response);
+				
+			}
+			
+			//System.out.println(username + " " + email + " " + phone + " addr" + " " + curpassword + " " + conpassword);
+			//ManagerDAO update=new ManagerDAO();
+			//update.UpdateManager(name, email, phone, addr, newpassword, username);
+			//request.setAttribute("Message", "PROFILE UPDATED SUCCESSFULLY !!!");
+			//request.getRequestDispatcher("UserHomePage.jsp").forward(request, response);
 			
 		}
+		
 		else if(sub.equalsIgnoreCase("ViewMyReservation")) {
 			ManagerDAO user=new ManagerDAO();
 			String startdate = request.getParameter("startdate");

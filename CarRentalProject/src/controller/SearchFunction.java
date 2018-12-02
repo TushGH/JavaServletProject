@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -13,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import data.transactionDAO;
+import model.SearchCar_errormsgs;
+import model.Searchcar;
 
 
 
@@ -26,7 +27,6 @@ public class SearchFunction extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-	
     public SearchFunction() {
         super();
         // TODO Auto-generated constructor stub
@@ -48,6 +48,18 @@ public class SearchFunction extends HttpServlet {
 			String endtime =request.getParameter("endtime");
 			String capacity =request.getParameter("capacity");
 			System.out.println(startdate + " " + enddate + " " + starttime + " " + endtime + " " + capacity);
+			Searchcar sc = new Searchcar(startdate, enddate, starttime, endtime, capacity);
+			SearchCar_errormsgs scerror = new SearchCar_errormsgs();
+			try{
+				sc.validatesearch(sc,scerror);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("the errormsgs we get here is "+scerror.getS_errorMsg());
+			
+			if(scerror.getS_errorMsg().equals(""))
+			{
 			transactionDAO aa = new transactionDAO();
 			ArrayList<String> availableCar = aa.searchcar(startdate, enddate, starttime, endtime, capacity);
 			request.setAttribute("startdate", startdate);
@@ -56,7 +68,16 @@ public class SearchFunction extends HttpServlet {
 			request.setAttribute("endtime", endtime);
 			request.setAttribute("capacity", capacity);
 			request.setAttribute("list", availableCar);
-			request.getRequestDispatcher("Display.jsp").forward(request, response);
+			System.out.println("the carlist is ");
+			request.getRequestDispatcher("Display.jsp").forward(request, response);}
+			
+			else
+			{                                         
+				request.setAttribute("emsgs", scerror);
+				request.setAttribute("mess" , "please correct the following errors");
+				request.getRequestDispatcher("searchcarnew.jsp").forward(request, response);
+				
+			}
 			
 		}
 		if(sub.equalsIgnoreCase("BookMyCar")){
@@ -88,19 +109,6 @@ public class SearchFunction extends HttpServlet {
 			request.setAttribute("endtime", endtime);
 			request.setAttribute("capacity", capacity);
 			request.setAttribute("CarName", CarName);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			
-			java.util.Date date1 = null;
-			java.util.Date date2 = null;
-			try {
-				date1 = format.parse ( startdate );
-				date2 = format.parse ( enddate );
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			double price = aa.calPrice(date1, date2,CarName);
-			request.setAttribute("price", price);
 			
 			request.getRequestDispatcher("BookingInfo.jsp").forward(request, response);
 			}
