@@ -57,8 +57,12 @@ public class PaymentModel {
 
 	private String validatecardno(String cardno) {
 		String result="";
-
-		if(!isTextAnInteger(cardno))
+		
+		if(cardno.isEmpty())
+		{ 
+			result="card number cant be empty";
+		}
+		else if(!isTextAnInteger(cardno))
 		{
 			result="you just have to enter numbers";
 		}
@@ -66,12 +70,17 @@ public class PaymentModel {
 		{
 			result="Card number should be 16 digits";
 		}
+		
 		return result;
 	}
 	private String validatecvvno(String cvvno) {
 		String result="";
-
-		if(!isTextAnInteger(cvvno))
+		
+		if(cvvno.isEmpty())
+		{ 
+			result="cvv number cant be empty";
+		}
+		else if(!isTextAnInteger(cvvno))
 		{
 			result="you just have to enter numbers";
 		}
@@ -83,6 +92,7 @@ public class PaymentModel {
 	}
 	private String validatecardtype(String cardtype) {
 		String result="";
+		
 		if(cardtype.isEmpty())
 		{
 			result="Card type cannot be empty";
@@ -92,6 +102,7 @@ public class PaymentModel {
 	private String validateexpirationdate(String expirationdate)
 	{
 		String result="";
+		
 		if(expirationdate.isEmpty())
 		{
 			result="Expiration date cannot be empty";
